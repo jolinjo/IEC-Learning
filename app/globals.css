@@ -59,6 +59,9 @@
 .prose-doc mark {
   @apply rounded-sm bg-yellow-200 px-0.5 text-inherit dark:bg-yellow-500/30;
 }
+.prose-doc mark.vital {
+  @apply bg-red-200 font-medium dark:bg-red-500/30;
+}
 .prose-doc .table-wrap {
   @apply overflow-x-auto;
 }

@@ -49,9 +49,11 @@ function stripPreamble(mdText: string): string {
 }
 
 function applyHighlights(mdText: string): string {
-  // ==重點== → <mark>:教材重點黃底,也是檢定出題的依據
-  // 內文允許出現單一等號(如「符號 = 圖形 + 節點」),非貪婪比對到下一個 ==
-  return mdText.replace(/==([^\n]+?)==/g, '<mark>$1</mark>')
+  // !!鐵律!! → 紅底(安全攸關/絕對禁止);==重點== → 黃底(必背記憶)
+  // 皆為檢定出題依據;內文允許單一等號,非貪婪比對到下一個標記
+  return mdText
+    .replace(/!!([^\n]+?)!!/g, '<mark class="vital">$1</mark>')
+    .replace(/==([^\n]+?)==/g, '<mark>$1</mark>')
 }
 
 function applyStrong(mdText: string): string {

@@ -47,7 +47,8 @@ export default async function HandbookPage({ params }: { params: Promise<{ slug:
                 📝 本章檢定
               </Link>
               <p className="mt-2 text-xs text-neutral-500">
-                內文<mark className="rounded-sm bg-yellow-200 px-0.5 dark:bg-yellow-500/30 dark:text-inherit">黃底</mark>為本章重點,也是檢定的出題依據。
+                <mark className="rounded-sm bg-yellow-200 px-0.5 dark:bg-yellow-500/30 dark:text-inherit">黃底</mark>=必背重點、
+                <mark className="rounded-sm bg-red-200 px-0.5 dark:bg-red-500/30 dark:text-inherit">紅底</mark>=鐵律(違反會出事),皆為檢定出題依據。
               </p>
             </>
           )}
