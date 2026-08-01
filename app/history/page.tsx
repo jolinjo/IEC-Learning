@@ -21,15 +21,15 @@ import RadarChart from '@/components/RadarChart'
 
 const BOOK_NAMES: Record<string, string> = {
   all: '總檢定',
-  A1: '81346-1 代號',
-  A2: '81346-2 選碼',
-  A3: '60445 端子導線',
-  A4: '線號合輯',
-  B1: '61355 文件',
-  C1: '61082-1 圖面',
-  C2: '60617 符號',
-  C3: '81714-2 符號設計',
-  D1: '60204-1 安全',
+  A1: 'A1 · 81346-1 代號',
+  A2: 'A2 · 81346-2 選碼',
+  A3: 'A3 · 60445 端子導線',
+  A4: 'A4 · 線號合輯',
+  B1: 'B1 · 61355 文件',
+  C1: 'C1 · 61082-1 圖面',
+  C2: 'C2 · 60617 符號',
+  C3: 'C3 · 81714-2 符號設計',
+  D1: 'D1 · 60204-1 安全',
 }
 
 function LevelBadge({ ratio }: { ratio: number }) {
@@ -194,7 +194,7 @@ export default function HistoryPage() {
                         const bm = masteryOf(qstats, [b])
                         return (
                           <div key={b} className="flex items-center gap-3">
-                            <span className="w-32 shrink-0 truncate">{BOOK_NAMES[b]}</span>
+                            <span className="w-40 shrink-0 truncate font-mono">{BOOK_NAMES[b]}</span>
                             <div className="h-1.5 flex-1 overflow-hidden rounded bg-neutral-200 dark:bg-neutral-800">
                               <div className="flex h-full">
                                 <div className="bg-green-500" style={{ width: `${(bm.mastered / bm.total) * 100}%` }} />
