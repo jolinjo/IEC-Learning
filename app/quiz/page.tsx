@@ -33,7 +33,7 @@ export default function QuizIndex() {
             href={`/quiz/${h.slug}/`}
             className="rounded-xl border border-neutral-200 p-4 hover:border-sky-400 dark:border-neutral-800"
           >
-            <div className="font-mono text-xs text-neutral-500">{h.slug}|題庫 {count(h.slug)} 題</div>
+            <div className="font-mono text-xs text-neutral-500">{h.slug} · 題庫 {count(h.slug)} 題</div>
             <div className="mt-1 font-bold">{h.std} {h.title}</div>
           </Link>
         ))}

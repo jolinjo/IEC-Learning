@@ -156,8 +156,8 @@ export default function HistoryPage() {
               <span className="w-12 text-right text-sm text-neutral-500">{Math.round(overall.ratio * 100)}%</span>
             </div>
             <div className="mt-2 text-xs text-neutral-400">
-              等級門檻:掌握 ⅓ 題庫=入門、⅔=熟練、全部=專家|
-              <span className="ml-1 inline-block h-2 w-2 rounded-sm bg-green-500 align-middle" /> 已掌握
+              等級門檻:掌握 ⅓ 題庫=入門、⅔=熟練、全部=專家。
+              <span className="ml-2 inline-block h-2 w-2 rounded-sm bg-green-500 align-middle" /> 已掌握
               <span className="ml-2 inline-block h-2 w-2 rounded-sm bg-amber-400 align-middle" /> 進行中
             </div>
           </div>
@@ -170,7 +170,10 @@ export default function HistoryPage() {
               return (
                 <div key={L.key} className="rounded-xl border border-neutral-200 p-4 dark:border-neutral-800">
                   <div className="flex items-center justify-between text-sm">
-                    <span className="font-bold">{L.key}|{L.name}</span>
+                    <span className="flex items-center gap-2 font-bold">
+                      <span className="flex h-6 w-6 items-center justify-center rounded-md bg-sky-600 font-mono text-xs text-white">{L.key}</span>
+                      {L.name}
+                    </span>
                     <span>
                       <LevelBadge ratio={m.ratio} />
                       <span className="ml-2 text-neutral-500">{m.mastered}/{m.total} 題</span>
@@ -186,7 +189,7 @@ export default function HistoryPage() {
                       return (
                         <div key={b} className="flex justify-between">
                           <span>{BOOK_NAMES[b]}</span>
-                          <span>{bm.mastered}/{bm.total}|<LevelBadge ratio={bm.ratio} /></span>
+                          <span>{bm.mastered}/{bm.total} 題 · <LevelBadge ratio={bm.ratio} /></span>
                         </div>
                       )
                     })}

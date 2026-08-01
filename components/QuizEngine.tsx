@@ -162,7 +162,7 @@ export default function QuizEngine({ book, title }: { book: string; title: strin
     const pct = Math.round((score / questions.length) * 100)
     return (
       <div className="mx-auto max-w-xl py-8 text-center">
-        <h1 className="text-2xl font-bold">{title}|檢定結果</h1>
+        <h1 className="text-2xl font-bold">{title} — 檢定結果</h1>
         <div className="mt-1 text-sm text-neutral-500">{user}</div>
         <div className="mt-6 text-6xl font-bold text-sky-600">
           {score}<span className="text-2xl text-neutral-400"> / {questions.length}</span>
@@ -199,9 +199,9 @@ export default function QuizEngine({ book, title }: { book: string; title: strin
   return (
     <div className="mx-auto max-w-2xl">
       <div className="flex items-center justify-between text-sm text-neutral-500">
-        <span>{title}|{user}</span>
+        <span>{title} · 👤 {user}</span>
         <span>
-          第 {current + 1} / {questions.length} 題|答對 {results.filter(Boolean).length}
+          第 {current + 1} / {questions.length} 題 · 答對 {results.filter(Boolean).length}
         </span>
       </div>
       <div className="mt-2 h-1.5 overflow-hidden rounded bg-neutral-200 dark:bg-neutral-800">

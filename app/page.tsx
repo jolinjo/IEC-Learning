@@ -24,7 +24,7 @@ export default function Home() {
       {STAGES.map((s) => (
         <section key={s.stage} className="mt-10">
           <h2 className="text-xl font-bold">
-            第 {s.stage} 階段|{s.name.split('|')[1]}
+            第 {s.stage} 階段 · {s.name.split('|')[1]}
             <span className="ml-3 align-middle text-xs font-normal text-neutral-500">{s.name.split('|')[0]}</span>
           </h2>
           <p className="mt-1 text-sm text-neutral-600 dark:text-neutral-400">{s.desc}</p>
@@ -39,7 +39,7 @@ export default function Home() {
                 >
                   <div className="flex items-center justify-between">
                     <span className="rounded bg-neutral-100 px-2 py-0.5 font-mono text-xs text-neutral-600 dark:bg-neutral-800 dark:text-neutral-300">
-                      {h.slug}|{h.layerName}
+                      {h.slug} · {h.layerName}
                     </span>
                     <span className="text-xs text-neutral-400">{h.std}</span>
                   </div>

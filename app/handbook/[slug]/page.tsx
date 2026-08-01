@@ -23,7 +23,7 @@ export default async function HandbookPage({ params }: { params: Promise<{ slug:
     <div className="lg:flex lg:gap-10">
       <aside className="mb-6 lg:sticky lg:top-20 lg:mb-0 lg:h-[calc(100vh-6rem)] lg:w-64 lg:shrink-0 lg:overflow-y-auto">
         <div className="rounded-xl border border-neutral-200 p-4 text-sm dark:border-neutral-800">
-          <div className="font-mono text-xs text-neutral-500">{meta.slug}|{meta.layerName}</div>
+          <div className="font-mono text-xs text-neutral-500">{meta.slug} · {meta.layerName}</div>
           <div className="mt-1 font-bold">{meta.std}</div>
           <div className="text-neutral-600 dark:text-neutral-400">{meta.title}</div>
           <hr className="my-3 border-neutral-200 dark:border-neutral-800" />
