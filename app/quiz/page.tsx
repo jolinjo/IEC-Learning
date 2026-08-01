@@ -25,7 +25,7 @@ export default function QuizIndex() {
       </Link>
 
       <div className="mt-6 grid gap-3 sm:grid-cols-2">
-        {HANDBOOKS.map((h) => (
+        {HANDBOOKS.filter((h) => !h.noQuiz).map((h) => (
           <Link
             key={h.slug}
             href={`/quiz/${h.slug}/`}

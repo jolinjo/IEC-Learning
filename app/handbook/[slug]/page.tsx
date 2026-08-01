@@ -39,23 +39,31 @@ export default async function HandbookPage({ params }: { params: Promise<{ slug:
             ))}
           </nav>
           <hr className="my-3 border-neutral-200 dark:border-neutral-800" />
-          <Link href={`/quiz/${meta.slug}/`} className="block rounded-lg bg-sky-600 px-3 py-2 text-center font-medium text-white hover:bg-sky-500">
-            📝 本章檢定
-          </Link>
-          <p className="mt-2 text-xs text-neutral-500">
-            內文<mark className="rounded-sm bg-yellow-200 px-0.5 dark:bg-yellow-500/30 dark:text-inherit">黃底</mark>為本章重點,也是檢定的出題依據。
-          </p>
+          {meta.noQuiz ? (
+            <p className="text-xs text-neutral-500">本冊為產品驗證知識,不列入線上檢定。</p>
+          ) : (
+            <>
+              <Link href={`/quiz/${meta.slug}/`} className="block rounded-lg bg-sky-600 px-3 py-2 text-center font-medium text-white hover:bg-sky-500">
+                📝 本章檢定
+              </Link>
+              <p className="mt-2 text-xs text-neutral-500">
+                內文<mark className="rounded-sm bg-yellow-200 px-0.5 dark:bg-yellow-500/30 dark:text-inherit">黃底</mark>為本章重點,也是檢定的出題依據。
+              </p>
+            </>
+          )}
         </div>
       </aside>
 
       <article className="min-w-0 flex-1">
         <div className="prose-doc" dangerouslySetInnerHTML={{ __html: html }} />
-        <div className="mt-12 rounded-xl border border-sky-200 bg-sky-50 p-5 text-center dark:border-sky-900 dark:bg-sky-950">
-          <div className="font-bold">讀完了嗎?馬上檢定加深印象</div>
-          <Link href={`/quiz/${meta.slug}/`} className="mt-3 inline-block rounded-lg bg-sky-600 px-6 py-2 font-medium text-white hover:bg-sky-500">
-            開始本章檢定(20 題)
-          </Link>
-        </div>
+        {!meta.noQuiz && (
+          <div className="mt-12 rounded-xl border border-sky-200 bg-sky-50 p-5 text-center dark:border-sky-900 dark:bg-sky-950">
+            <div className="font-bold">讀完了嗎?馬上檢定加深印象</div>
+            <Link href={`/quiz/${meta.slug}/`} className="mt-3 inline-block rounded-lg bg-sky-600 px-6 py-2 font-medium text-white hover:bg-sky-500">
+              開始本章檢定(20 題)
+            </Link>
+          </div>
+        )}
         <div className="mt-8 flex justify-between text-sm">
           {prev ? (
             <Link href={`/handbook/${prev.slug}/`} className="text-sky-600 hover:underline">← {prev.std} {prev.title}</Link>

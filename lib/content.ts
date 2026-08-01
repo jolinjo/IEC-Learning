@@ -14,6 +14,7 @@ export interface HandbookMeta {
   stage: 1 | 2 | 3
   stageOrder: number
   blurb: string
+  noQuiz?: boolean // true = 不列入線上檢定(如 61439 產品驗證知識)
 }
 
 // 學習路徑:入門(認符號讀代號)→ 進階(讀懂整套圖)→ 精通(畫出正規圖)
@@ -27,6 +28,7 @@ export const HANDBOOKS: HandbookMeta[] = [
   { slug: 'A4', file: 'A4_IEC_61175_61666_62491_線號端子與電纜標示手冊.md', std: 'IEC 61175/61666/62491', title: '線號與標示合輯', layer: 'A', layerName: '物件命名', stage: 3, stageOrder: 2, blurb: '線號、端子排、電纜標籤的完整系統' },
   { slug: 'D1', file: 'D1_IEC_60204-1_設計與識圖手冊.md', std: 'IEC 60204-1', title: '機械電氣安全', layer: 'D', layerName: '應用領域', stage: 3, stageOrder: 3, blurb: '急停、線色、驗證測試——出圖的安全底線' },
   { slug: 'C3', file: 'C3_IEC_81714-2_符號設計手冊.md', std: 'IEC 81714-2', title: '符號設計與元件庫', layer: 'C', layerName: '圖面表達', stage: 3, stageOrder: 4, blurb: '自建符號的網格、節點與庫管理——維護元件庫必讀' },
+  { slug: 'D2', file: 'D2_IEC_61439_盤體設計與驗證手冊.md', std: 'IEC 61439', title: '盤體設計與驗證', layer: 'D', layerName: '應用領域', stage: 3, stageOrder: 5, blurb: '盤體作為產品:額定值、溫升短路驗證與交機文件(不列入檢定)', noQuiz: true },
 ]
 
 export const MAP_META: HandbookMeta = {

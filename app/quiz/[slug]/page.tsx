@@ -2,7 +2,7 @@ import QuizEngine from '@/components/QuizEngine'
 import { HANDBOOKS, getHandbook } from '@/lib/content'
 
 export function generateStaticParams() {
-  return [{ slug: 'all' }, ...HANDBOOKS.map((h) => ({ slug: h.slug }))]
+  return [{ slug: 'all' }, ...HANDBOOKS.filter((h) => !h.noQuiz).map((h) => ({ slug: h.slug }))]
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
