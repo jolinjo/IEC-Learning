@@ -34,25 +34,35 @@ IEC 規範原文又厚又硬，初學者常常不知道從哪裡下手：
 
 手冊以 Markdown 為正式版本（未來直接轉為網站內容）；`doc/` 內同名 `.docx` 為原始來源檔。
 
-## 專案進行方式
+## 教學網站
 
-本專案分兩個階段：
+網站以 Next.js（App Router）+ TypeScript + Tailwind CSS 建置，靜態輸出部署到 GitHub Pages（push 到 main 自動部署）。
 
-1. **內容萃取（進行中）**：逐一討論各規範的核心內容，整理成 `md/` 下的教學手冊文件。
-2. **網站建置（規劃中）**：內容穩定後，參考 HappyLearnCodesys 的架構（Next.js App Router + TypeScript + Tailwind CSS，GitHub Pages 靜態部署），將教材做成可搜尋、有學習地圖的教學網站。
+- **學習路徑**：入門（看懂符號與代號）→ 進階（讀懂一整套圖）→ 精通（畫出正規的圖），三階段導讀八冊手冊。
+- **線上檢定**：每章 20 題即時考核，答錯立即顯示正解與解析；依弱點主題加權出題；總檢定橫跨全題庫。成績與弱點紀錄保存在瀏覽器本機（localStorage），不上傳。
+
+```bash
+npm install
+npm run dev    # 本機開發 http://localhost:3000
+npm run build  # 靜態輸出到 out/
+```
+
+> 首次部署需在 GitHub 儲存庫 Settings → Pages 將 Source 設為「GitHub Actions」。
 
 ## 目錄結構
 
 ```
 IEC-Learning/
-├── md/           # 教學手冊 Markdown(正式版本)
-│   └── images/   # 符號圖(由 QET 元件庫轉出的 SVG)
-├── doc/          # 手冊的 .docx 原始來源檔
-├── tools/        # QET .elmt → SVG 轉換工具
-└── README.md
+├── md/               # 教學手冊 Markdown(正式版本,網站內容來源)
+│   └── images/       # 符號圖(由 QET 元件庫轉出的 SVG)
+├── doc/              # 手冊的 .docx 原始來源檔
+├── tools/            # QET .elmt → SVG 轉換工具
+├── app/              # Next.js 頁面(首頁/手冊/地圖/檢定/成績)
+├── components/       # QuizEngine 等元件
+├── data/questions.ts # 檢定題庫(依手冊與主題標籤)
+├── lib/content.ts    # md → 頁面的內容管線
+└── .github/workflows # GitHub Pages 自動部署
 ```
-
-網站建置階段展開後，將依序加入 `app/`、`components/`、`content/`、`public/` 等目錄。
 
 ## 授權與聲明
 
