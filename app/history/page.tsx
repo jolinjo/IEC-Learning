@@ -188,17 +188,26 @@ export default function HistoryPage() {
                     <MasteryBar {...m} />
                     <span className="w-12 text-right text-xs text-neutral-500">{Math.round(m.ratio * 100)}%</span>
                   </div>
-                  <div className="mt-2 grid gap-1 text-xs text-neutral-500 sm:grid-cols-2">
-                    {L.books.map((b) => {
-                      const bm = masteryOf(qstats, [b])
-                      return (
-                        <div key={b} className="flex justify-between">
-                          <span>{BOOK_NAMES[b]}</span>
-                          <span>{bm.mastered}/{bm.total} 題 · <LevelBadge ratio={bm.ratio} /></span>
-                        </div>
-                      )
-                    })}
-                  </div>
+                  {L.books.length > 1 && (
+                    <div className="mt-3 space-y-1.5 border-t border-neutral-100 pt-2 text-xs text-neutral-500 dark:border-neutral-800">
+                      {L.books.map((b) => {
+                        const bm = masteryOf(qstats, [b])
+                        return (
+                          <div key={b} className="flex items-center gap-3">
+                            <span className="w-32 shrink-0 truncate">{BOOK_NAMES[b]}</span>
+                            <div className="h-1.5 flex-1 overflow-hidden rounded bg-neutral-200 dark:bg-neutral-800">
+                              <div className="flex h-full">
+                                <div className="bg-green-500" style={{ width: `${(bm.mastered / bm.total) * 100}%` }} />
+                                <div className="bg-amber-400" style={{ width: `${(bm.inProgress / bm.total) * 100}%` }} />
+                              </div>
+                            </div>
+                            <span className="w-14 shrink-0 text-right tabular-nums">{bm.mastered}/{bm.total} 題</span>
+                            <span className="w-8 shrink-0 text-right"><LevelBadge ratio={bm.ratio} /></span>
+                          </div>
+                        )
+                      })}
+                    </div>
+                  )}
                 </div>
               )
             })}
