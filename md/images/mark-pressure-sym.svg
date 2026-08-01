@@ -8,7 +8,7 @@
     }
   </style>
   <g class="sym" stroke-width="1.8">
-    <rect x="14" y="20" width="32" height="20"/>
-    <line x1="14" y1="30" x2="46" y2="30" stroke-dasharray="3 3"/>
+    <rect x="16" y="16" width="28" height="28"/>
+    <text x="23" y="40" font-size="22" font-family="sans-serif">P</text>
   </g>
 </svg>
