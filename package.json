@@ -7,8 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "prebuild": "rm -rf public/images && cp -R md/images public/images",
-    "predev": "rm -rf public/images && cp -R md/images public/images"
+    "prebuild": "mkdir -p public && rm -rf public/images && cp -R md/images public/images",
+    "predev": "mkdir -p public && rm -rf public/images && cp -R md/images public/images"
   },
   "dependencies": {
     "marked": "^12.0.2",
