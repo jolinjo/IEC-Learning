@@ -80,43 +80,52 @@ export default function QuizEngine({ book, title }: { book: string; title: strin
   const q = questions[current]
   const sh = shuffled[current]
 
-  const choose = (i: number) => {
-    if (selected !== null || !q || !sh) return
-    setSelected(i)
-    const correct = i === sh.answer
-    setResults((r) => [...r, correct])
-    recordAnswer(q.id, correct)
-  }
-
-  const next = () => {
-    if (current + 1 < questions.length) {
-      setCurrent(current + 1)
-      setSelected(null)
-    } else {
-      finish()
-    }
-  }
-
-  const weakTopics = useMemo(() => {
+  const weakOf = (res: boolean[]) => {
     const byTopic: Record<string, number> = {}
-    results.forEach((ok, i) => {
+    res.forEach((ok, i) => {
       const t = questions[i]?.topic
       if (!t || ok) return
       byTopic[t] = (byTopic[t] ?? 0) + 1
     })
     return Object.entries(byTopic).sort((a, b) => b[1] - a[1])
-  }, [results, questions])
+  }
 
-  const finish = () => {
+  const finishWith = (res: boolean[]) => {
     setDone(true)
     recordHistory({
       date: new Date().toISOString(),
       book,
-      score: results.filter(Boolean).length,
+      score: res.filter(Boolean).length,
       total: questions.length,
-      weak: weakTopics.map(([t]) => t),
+      weak: weakOf(res).map(([t]) => t),
     })
   }
+
+  const advance = (res: boolean[]) => {
+    if (current + 1 < questions.length) {
+      setCurrent(current + 1)
+      setSelected(null)
+    } else {
+      finishWith(res)
+    }
+  }
+
+  const choose = (i: number) => {
+    if (selected !== null || !q || !sh) return
+    setSelected(i)
+    const correct = i === sh.answer
+    const newResults = [...results, correct]
+    setResults(newResults)
+    recordAnswer(q.id, correct)
+    if (correct) {
+      // 答對不打斷節奏:短暫顯示綠色後自動進下一題
+      setTimeout(() => advance(newResults), 600)
+    }
+  }
+
+  const next = () => advance(results)
+
+  const weakTopics = useMemo(() => weakOf(results), [results, questions])
 
   if (!ready) return null
 
@@ -250,9 +259,9 @@ export default function QuizEngine({ book, title }: { book: string; title: strin
         })}
       </div>
 
-      {answered && (
-        <div className={`mt-4 rounded-xl border p-4 text-sm ${correct ? 'border-green-300 bg-green-50 dark:border-green-800 dark:bg-green-950' : 'border-red-300 bg-red-50 dark:border-red-800 dark:bg-red-950'}`}>
-          <div className="font-bold">{correct ? '✅ 答對了!' : `❌ 答錯了,正解是 ${String.fromCharCode(65 + sh.answer)}`}</div>
+      {answered && !correct && (
+        <div className="mt-4 rounded-xl border border-red-300 bg-red-50 p-4 text-sm dark:border-red-800 dark:bg-red-950">
+          <div className="font-bold">❌ 答錯了,正解是 {String.fromCharCode(65 + sh.answer)}</div>
           <p className="mt-2 leading-relaxed">{q.ex}</p>
           <button onClick={next} className="mt-3 rounded-lg bg-sky-600 px-5 py-2 font-medium text-white hover:bg-sky-500">
             {current + 1 < questions.length ? '下一題 →' : '看總結'}
