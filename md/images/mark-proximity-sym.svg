@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 60" width="66">
+  <style>
+    g.sym { stroke:#3f3f3f; fill:none; stroke-linecap:round; stroke-linejoin:round }
+    g.sym .solid { fill:#3f3f3f; stroke:none }
+    @media (prefers-color-scheme: dark) {
+      g.sym { stroke:#c9c9c9 }
+      g.sym .solid { fill:#c9c9c9 }
+    }
+  </style>
+  <g class="sym" stroke-width="1.8">
+    <path d="M 30 12 L 48 30 L 30 48 L 12 30 Z"/>
+    <path class="solid" d="M 30 22 L 38 30 L 30 38 L 22 30 Z"/>
+  </g>
+</svg>
