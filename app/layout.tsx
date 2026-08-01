@@ -12,6 +12,7 @@ const NAV = [
   { href: '/map/', label: '規範地圖' },
   { href: '/quiz/', label: '線上檢定' },
   { href: '/history/', label: '成績紀錄' },
+  { href: '/report/', label: '成績彙整' },
 ]
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
