@@ -24,6 +24,7 @@ const BOOK_NAMES: Record<string, string> = {
   A3: 'IEC 60445 端子導線',
   A4: '線號合輯',
   D1: 'IEC 60204-1 安全',
+  C3: 'IEC 81714-2 符號設計',
 }
 
 export default function HistoryPage() {

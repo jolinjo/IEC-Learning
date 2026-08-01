@@ -26,6 +26,7 @@ export const HANDBOOKS: HandbookMeta[] = [
   { slug: 'A3', file: 'A3_IEC_60445_端子與導線識別手冊.md', std: 'IEC 60445', title: '端子與導線識別', layer: 'A', layerName: '物件命名', stage: 3, stageOrder: 1, blurb: '線色鐵律、端子標示——圖與實物對得起來' },
   { slug: 'A4', file: 'A4_IEC_61175_61666_62491_線號端子與電纜標示手冊.md', std: 'IEC 61175/61666/62491', title: '線號與標示合輯', layer: 'A', layerName: '物件命名', stage: 3, stageOrder: 2, blurb: '線號、端子排、電纜標籤的完整系統' },
   { slug: 'D1', file: 'D1_IEC_60204-1_設計與識圖手冊.md', std: 'IEC 60204-1', title: '機械電氣安全', layer: 'D', layerName: '應用領域', stage: 3, stageOrder: 3, blurb: '急停、線色、驗證測試——出圖的安全底線' },
+  { slug: 'C3', file: 'C3_IEC_81714-2_符號設計手冊.md', std: 'IEC 81714-2', title: '符號設計與元件庫', layer: 'C', layerName: '圖面表達', stage: 3, stageOrder: 4, blurb: '自建符號的網格、節點與庫管理——維護元件庫必讀' },
 ]
 
 export const MAP_META: HandbookMeta = {
