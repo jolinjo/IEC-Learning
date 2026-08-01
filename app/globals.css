@@ -65,3 +65,20 @@
 .prose-doc .table-wrap {
   @apply overflow-x-auto;
 }
+
+/* 提示方塊(💡/⚠️/🚫/※)底色卡片 */
+.prose-doc .co {
+  @apply my-4 rounded-xl border px-4 py-3;
+}
+.prose-doc .co-tip {
+  @apply border-sky-200 bg-sky-50 dark:border-sky-900 dark:bg-sky-950/60;
+}
+.prose-doc .co-warn {
+  @apply border-amber-200 bg-amber-50 dark:border-amber-900 dark:bg-amber-950/60;
+}
+.prose-doc .co-danger {
+  @apply border-red-200 bg-red-50 dark:border-red-900 dark:bg-red-950/60;
+}
+.prose-doc .co-note {
+  @apply border-neutral-200 bg-neutral-50 dark:border-neutral-800 dark:bg-neutral-900/60;
+}

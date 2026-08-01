@@ -88,7 +88,12 @@ export function renderHandbook(meta: HandbookMeta): { html: string; toc: TocItem
     return `<a href="${href}"${ext}>${text}</a>`
   }
 
-  const html = marked.parse(body, { renderer, gfm: true }) as string
+  let html = marked.parse(body, { renderer, gfm: true }) as string
+  // 提示方塊上底色:💡 小知識/⚠️ 注意/🚫 禁止/※ 補充 開頭的段落轉為 callout 卡片
+  html = html.replace(/<p>(<strong>)?(💡|⚠️|⚠|🚫|※)/g, (_m, strong, icon) => {
+    const cls = icon === '💡' ? 'co-tip' : icon === '🚫' ? 'co-danger' : icon === '※' ? 'co-note' : 'co-warn'
+    return `<p class="co ${cls}">${strong ?? ''}${icon}`
+  })
   return { html, toc }
 }
 
