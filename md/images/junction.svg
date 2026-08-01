@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 50" width="170">
+  <style>
+    g.sym { stroke:#3f3f3f; fill:none; stroke-linecap:round }
+    g.sym .dot { fill:#3f3f3f; stroke:none }
+    @media (prefers-color-scheme: dark) {
+      g.sym { stroke:#c9c9c9 }
+      g.sym .dot { fill:#c9c9c9 }
+    }
+  </style>
+  <g class="sym" stroke-width="1.2">
+    <line x1="8" y1="25" x2="48" y2="25"/>
+    <line x1="28" y1="6" x2="28" y2="44"/>
+    <circle class="dot" cx="28" cy="25" r="3.2"/>
+    <line x1="70" y1="25" x2="112" y2="25"/>
+    <line x1="91" y1="6" x2="91" y2="44"/>
+  </g>
+</svg>

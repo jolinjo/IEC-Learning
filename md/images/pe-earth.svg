@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 60" width="90">
+  <style>
+    g.sym { stroke:#3f3f3f; fill:none; stroke-linecap:round }
+    @media (prefers-color-scheme: dark) { g.sym { stroke:#c9c9c9 } }
+  </style>
+  <g class="sym" stroke-width="1.2">
+    <circle cx="30" cy="30" r="24"/>
+    <line x1="30" y1="14" x2="30" y2="30"/>
+    <line x1="16" y1="30" x2="44" y2="30"/>
+    <line x1="21" y1="36" x2="39" y2="36"/>
+    <line x1="26" y1="42" x2="34" y2="42"/>
+  </g>
+</svg>

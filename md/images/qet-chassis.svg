@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-13.0 -16.0 27.0 25.0" width="81">
+  <style>
+    g.sym { stroke:#3f3f3f; fill:none; stroke-linecap:round; stroke-linejoin:round }
+    g.sym text { stroke:none; fill:#3f3f3f }
+    @media (prefers-color-scheme: dark) {
+      g.sym { stroke:#c9c9c9 }
+      g.sym text { fill:#c9c9c9 }
+    }
+  </style>
+  <g class="sym">
+    <line x1="7.5" y1="0.5" x2="5.0" y2="3.0" stroke-width="1.0"/>
+    <line x1="-1.0" y1="3.0" x2="1.5" y2="0.5" stroke-width="1.0"/>
+    <line x1="-7.0" y1="3.0" x2="-4.5" y2="0.5" stroke-width="1.0"/>
+    <line x1="2.0" y1="3.0" x2="4.5" y2="0.5" stroke-width="1.0"/>
+    <line x1="-4.0" y1="3.0" x2="-1.5" y2="0.5" stroke-width="1.0"/>
+    <line x1="-7.0" y1="0.0" x2="8.0" y2="0.0" stroke-width="1.0"/>
+    <line x1="0.0" y1="-10.0" x2="0.0" y2="0.0" stroke-width="1.0"/>
+  </g>
+</svg>

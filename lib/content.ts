@@ -45,9 +45,14 @@ function stripPreamble(mdText: string): string {
   return idx >= 0 ? mdText.slice(idx) : mdText
 }
 
+function applyHighlights(mdText: string): string {
+  // ==重點== → <mark>:教材重點黃底,也是檢定出題的依據
+  return mdText.replace(/==([^=\n][^=\n]*?)==/g, '<mark>$1</mark>')
+}
+
 export function renderHandbook(meta: HandbookMeta): { html: string; toc: TocItem[] } {
   const raw = fs.readFileSync(path.join(process.cwd(), 'md', meta.file), 'utf-8')
-  const body = stripPreamble(raw)
+  const body = applyHighlights(stripPreamble(raw))
   const toc: TocItem[] = []
   let hIndex = 0
 

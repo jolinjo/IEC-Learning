@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-30.0 -26.0 40.0 47.0" width="94">
+  <style>
+    g.sym { stroke:#3f3f3f; fill:none; stroke-linecap:round; stroke-linejoin:round }
+    g.sym text { stroke:none; fill:#3f3f3f }
+    @media (prefers-color-scheme: dark) {
+      g.sym { stroke:#c9c9c9 }
+      g.sym text { fill:#c9c9c9 }
+    }
+  </style>
+  <g class="sym">
+    <line x1="0.0" y1="-8.0" x2="0.0" y2="-20.0" stroke-width="1.0"/>
+    <line x1="-20.0" y1="-8.0" x2="-20.0" y2="-20.0" stroke-width="1.0"/>
+    <polygon points="-2.0,-8.0 -2.0,-8.0 2.0,-8.0 0.0,-2.0" stroke-width="0.7"/>
+    <polygon points="-22.0,-8.0 -22.0,-8.0 -18.0,-8.0 -20.0,-2.0" stroke-width="0.7"/>
+    <line x1="0.0" y1="10.0" x2="0.0" y2="15.0" stroke-width="1.0"/>
+    <line x1="-20.0" y1="10.0" x2="-20.0" y2="15.0" stroke-width="1.0"/>
+    <line x1="4.0" y1="10.0" x2="4.0" y2="-10.0" stroke-width="1.0"/>
+    <line x1="-16.0" y1="10.0" x2="-16.0" y2="-10.0" stroke-width="1.0"/>
+    <line x1="-4.0" y1="10.0" x2="4.0" y2="10.0" stroke-width="1.0"/>
+    <line x1="-24.0" y1="10.0" x2="-16.0" y2="10.0" stroke-width="1.0"/>
+    <line x1="4.0" y1="-10.0" x2="-4.0" y2="-10.0" stroke-width="1.0"/>
+    <line x1="-16.0" y1="-10.0" x2="-24.0" y2="-10.0" stroke-width="1.0"/>
+    <line x1="-24.0" y1="-10.0" x2="-24.0" y2="10.0" stroke-width="1.0"/>
+    <line x1="-4.0" y1="-10.0" x2="-4.0" y2="10.0" stroke-width="1.0"/>
+    <line x1="0.0" y1="15.0" x2="-20.0" y2="15.0" stroke-width="1.0"/>
+  </g>
+</svg>

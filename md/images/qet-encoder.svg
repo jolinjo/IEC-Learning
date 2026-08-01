@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-66.0 -51.0 162.0 87.0" width="205">
+  <style>
+    g.sym { stroke:#3f3f3f; fill:none; stroke-linecap:round; stroke-linejoin:round }
+    g.sym text { stroke:none; fill:#3f3f3f }
+    @media (prefers-color-scheme: dark) {
+      g.sym { stroke:#c9c9c9 }
+      g.sym text { fill:#c9c9c9 }
+    }
+  </style>
+  <g class="sym">
+    <ellipse cx="10.0" cy="5.0" rx="25.0" ry="25.0" stroke-width="1.0"/>
+    <line x1="0.0" y1="-40.0" x2="0.0" y2="-18.0" stroke-width="1.0"/>
+    <line x1="20.0" y1="-40.0" x2="20.0" y2="-18.0" stroke-width="1.0"/>
+    <line x1="40.0" y1="-40.0" x2="40.0" y2="-30.0" stroke-width="1.0"/>
+    <line x1="-20.0" y1="-40.0" x2="-20.0" y2="-30.0" stroke-width="1.0"/>
+    <line x1="-40.0" y1="-40.0" x2="-40.0" y2="-30.0" stroke-width="1.0"/>
+    <line x1="-60.0" y1="-40.0" x2="-60.0" y2="-30.0" stroke-width="1.0"/>
+    <line x1="60.0" y1="-40.0" x2="60.0" y2="-30.0" stroke-width="1.0"/>
+    <line x1="80.0" y1="-40.0" x2="80.0" y2="-30.0" stroke-width="1.0"/>
+    <line x1="-20.0" y1="-30.0" x2="-5.0" y2="-15.0" stroke-width="1.0"/>
+    <line x1="-40.0" y1="-30.0" x2="-10.0" y2="-10.0" stroke-width="1.0"/>
+    <line x1="-60.0" y1="-30.0" x2="-14.0" y2="-3.0" stroke-width="1.0"/>
+    <line x1="40.0" y1="-30.0" x2="25.0" y2="-15.0" stroke-width="1.0"/>
+    <line x1="60.0" y1="-30.0" x2="30.0" y2="-10.0" stroke-width="1.0"/>
+    <line x1="80.0" y1="-30.0" x2="34.0" y2="-3.0" stroke-width="1.0"/>
+    <line x1="-35.0" y1="-45.0" x2="-30.0" y2="-45.0" stroke-width="1.0"/>
+    <line x1="5.0" y1="-45.0" x2="10.0" y2="-45.0" stroke-width="1.0"/>
+    <line x1="85.0" y1="-45.0" x2="90.0" y2="-45.0" stroke-width="1.0"/>
+    <line x1="-5.0" y1="10.0" x2="5.0" y2="10.0" stroke-width="1.0"/>
+    <line x1="5.0" y1="10.0" x2="5.0" y2="-5.0" stroke-width="1.0"/>
+    <line x1="15.0" y1="-5.0" x2="15.0" y2="10.0" stroke-width="1.0"/>
+    <line x1="25.0" y1="10.0" x2="15.0" y2="10.0" stroke-width="1.0"/>
+    <line x1="15.0" y1="-5.0" x2="5.0" y2="-5.0" stroke-width="1.0"/>
+  </g>
+</svg>

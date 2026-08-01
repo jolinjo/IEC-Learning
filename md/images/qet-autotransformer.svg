@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-41.0 -46.0 62.0 82.0" width="83">
+  <style>
+    g.sym { stroke:#3f3f3f; fill:none; stroke-linecap:round; stroke-linejoin:round }
+    g.sym text { stroke:none; fill:#3f3f3f }
+    @media (prefers-color-scheme: dark) {
+      g.sym { stroke:#c9c9c9 }
+      g.sym text { fill:#c9c9c9 }
+    }
+  </style>
+  <g class="sym">
+    <ellipse cx="0.0" cy="0.0" rx="15.0" ry="15.0" stroke-width="1.0"/>
+    <line x1="-5.05" y1="-30.05" x2="4.95" y2="-34.05" stroke-width="1.0"/>
+    <line x1="-5.0" y1="22.0" x2="5.0" y2="18.0" stroke-width="1.0"/>
+    <line x1="-5.05" y1="-28.05" x2="4.95" y2="-32.05" stroke-width="1.0"/>
+    <line x1="0.0" y1="-40.0" x2="0.0" y2="-25.0" stroke-width="1.0"/>
+    <line x1="0.0" y1="15.0" x2="0.0" y2="30.0" stroke-width="1.0"/>
+    <line x1="-5.0" y1="24.0" x2="5.0" y2="20.0" stroke-width="1.0"/>
+    <path d="M 15.00 -0.48 A 25.00 27.50 0 0 0 0.17 -25.12" stroke-width="1.0"/>
+  </g>
+</svg>

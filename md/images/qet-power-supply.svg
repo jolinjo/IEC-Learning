@@ -24,8 +24,8 @@
     <ellipse cx="10.0" cy="30.0" rx="2.5" ry="2.5" stroke-width="1.0"/>
     <ellipse cx="30.0" cy="30.0" rx="2.5" ry="2.5" stroke-width="1.0"/>
     <text x="-12.4" y="24.0" font-size="8.0" font-family="sans-serif">+</text>
-    <rect x="-10.0" y="-15.0" width="60.0" height="30.0" stroke-width="0.4"/>
-    <line x1="50.0" y1="-15.0" x2="-10.0" y2="15.0" stroke-width="0.4"/>
+    <rect x="-10.0" y="-15.0" width="60.0" height="30.0" stroke-width="0.7"/>
+    <line x1="50.0" y1="-15.0" x2="-10.0" y2="15.0" stroke-width="0.7"/>
     <ellipse cx="-10.0" cy="-30.0" rx="2.5" ry="2.5" stroke-width="1.0"/>
   </g>
 </svg>

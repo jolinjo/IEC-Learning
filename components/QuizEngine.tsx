@@ -7,6 +7,7 @@ import { QUESTIONS, TOPIC_NAMES, type Question } from '@/data/questions'
 const QUIZ_SIZE = 20
 const STATS_KEY = 'iecq_stats' // { [topic]: { right, wrong } }
 const HISTORY_KEY = 'iecq_history' // [{ date, book, score, total, weak[] }]
+const IMG_PREFIX = process.env.NODE_ENV === 'production' ? '/IEC-Learning/images/' : '/images/'
 
 type Stats = Record<string, { right: number; wrong: number }>
 
@@ -48,15 +49,15 @@ function pickQuestions(book: string, stats: Stats): Question[] {
   return picked
 }
 
-/** 選項洗牌並回傳新正解索引 */
-function shuffleOptions(q: Question): { options: string[]; answer: number } {
+/** 選項洗牌:回傳原始索引順序與新正解位置(文字與圖片選項用同一順序) */
+function shuffleOptions(q: Question): { order: number[]; answer: number } {
   const order = q.options.map((_, i) => i).sort(() => Math.random() - 0.5)
-  return { options: order.map((i) => q.options[i]), answer: order.indexOf(q.a) }
+  return { order, answer: order.indexOf(q.a) }
 }
 
 export default function QuizEngine({ book, title }: { book: string; title: string }) {
   const [questions, setQuestions] = useState<Question[]>([])
-  const [shuffled, setShuffled] = useState<{ options: string[]; answer: number }[]>([])
+  const [shuffled, setShuffled] = useState<{ order: number[]; answer: number }[]>([])
   const [current, setCurrent] = useState(0)
   const [selected, setSelected] = useState<number | null>(null)
   const [results, setResults] = useState<boolean[]>([])
@@ -180,8 +181,14 @@ export default function QuizEngine({ book, title }: { book: string; title: strin
       <h2 className="mt-6 text-lg font-bold leading-relaxed">{q.q}</h2>
       <div className="mt-1 text-xs text-neutral-400">主題:{TOPIC_NAMES[q.topic] ?? q.topic}</div>
 
-      <div className="mt-4 space-y-2">
-        {sh.options.map((opt, i) => {
+      {q.img && (
+        <div className="mt-4 flex justify-center rounded-xl border border-neutral-200 bg-neutral-50 p-6 dark:border-neutral-800 dark:bg-neutral-900">
+          <img src={`${IMG_PREFIX}${q.img}`} alt="題目符號圖" className="max-h-36" />
+        </div>
+      )}
+
+      <div className={`mt-4 ${q.optImgs ? 'grid grid-cols-2 gap-3' : 'space-y-2'}`}>
+        {sh.order.map((orig, i) => {
           let cls = 'border-neutral-300 hover:border-sky-400 dark:border-neutral-700'
           if (answered) {
             if (i === sh.answer) cls = 'border-green-500 bg-green-50 dark:bg-green-950'
@@ -195,8 +202,19 @@ export default function QuizEngine({ book, title }: { book: string; title: strin
               disabled={answered}
               className={`block w-full rounded-lg border px-4 py-3 text-left transition ${cls}`}
             >
-              <span className="mr-2 font-mono text-neutral-400">{String.fromCharCode(65 + i)}.</span>
-              {opt}
+              {q.optImgs ? (
+                <span className="flex flex-col items-center gap-2">
+                  <img src={`${IMG_PREFIX}${q.optImgs[orig]}`} alt="" className="max-h-24" />
+                  <span className="text-xs text-neutral-400">
+                    {String.fromCharCode(65 + i)}{answered ? `. ${q.options[orig]}` : ''}
+                  </span>
+                </span>
+              ) : (
+                <>
+                  <span className="mr-2 font-mono text-neutral-400">{String.fromCharCode(65 + i)}.</span>
+                  {q.options[orig]}
+                </>
+              )}
             </button>
           )
         })}

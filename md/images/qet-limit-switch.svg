@@ -11,6 +11,6 @@
     <polyline points="5.0,-10.0 0.0,10.0 0.0,20.0" stroke-width="1.0"/>
     <line x1="0.0" y1="-9.0" x2="6.0" y2="-9.0" stroke-width="1.0"/>
     <line x1="0.0" y1="-20.0" x2="0.0" y2="-9.0" stroke-width="1.0"/>
-    <polyline points="4.0,-7.0 -1.0,-7.0 1.0,6.0" stroke-width="0.4"/>
+    <polyline points="4.0,-7.0 -1.0,-7.0 1.0,6.0" stroke-width="0.7"/>
   </g>
 </svg>

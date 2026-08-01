@@ -42,6 +42,9 @@ export default async function HandbookPage({ params }: { params: Promise<{ slug:
           <Link href={`/quiz/${meta.slug}/`} className="block rounded-lg bg-sky-600 px-3 py-2 text-center font-medium text-white hover:bg-sky-500">
             📝 本章檢定
           </Link>
+          <p className="mt-2 text-xs text-neutral-500">
+            內文<mark className="rounded-sm bg-yellow-200 px-0.5 dark:bg-yellow-500/30 dark:text-inherit">黃底</mark>為本章重點,也是檢定的出題依據。
+          </p>
         </div>
       </aside>
 

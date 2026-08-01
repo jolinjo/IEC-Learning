@@ -5,6 +5,7 @@ sys.path.insert(0, os.path.dirname(__file__))
 from elmt2svg import convert
 
 LIB = os.path.expanduser('~/Documents/claudeCodeDev/QET-Lib/elements-company/schematic_multiline')
+OFFICIAL = os.path.expanduser('~/Documents/claudeCodeDev/QET/elements/10_electric')  # QET 官方元件庫
 OUT = os.path.join(os.path.dirname(__file__), '..', 'md', 'images')
 
 # slug -> QET-Lib 相對路徑
@@ -60,12 +61,28 @@ ELEMENTS = {
     'diode': 'G_electronic_misc/29_electronic/二極體.elmt',
     'led': 'G_electronic_misc/29_electronic/LED.elmt',
     'zener': 'G_electronic_misc/29_electronic/稽納二極體.elmt',
+    # === 以下取自 QET 官方元件庫(OFFICIAL::)===
+    'chassis': 'OFFICIAL::10_allpole/110_network_supplies/masse.elmt',
+    'manual-switch': '../third_party/10_electric/11_singlepole/interrupteur.elmt',
+    'load-switch-3p': 'OFFICIAL::10_allpole/200_fuses_protective_gears/20_disconnecting_switches/inter_sectionneur_tri.elmt',
+    'spd': 'OFFICIAL::10_allpole/200_fuses_protective_gears/90_overvoltage_protections/parafoudre_3.elmt',
+    'latching-coil': 'C_relay_control/17_latching_relay/閉鎖式繼電器線圈.elmt',
+    'generator': 'OFFICIAL::11_singlepole/392_generators_sources/10_generators/generatrice.elmt',
+    'autotransformer': 'OFFICIAL::11_singlepole/330_transformers_power_supplies/10_transformers/autotransformator_1f_1.elmt',
+    'vfd': 'OFFICIAL::10_allpole/340_converters_inverters/10_converters/ac1_ac1.elmt',
+    'level-no': 'OFFICIAL::10_allpole/390_sensors_instruments/12_sensors_level/niv_liquide_no.elmt',
+    'encoder': 'OFFICIAL::10_allpole/390_sensors_instruments/80_encoder/codeur.elmt',
+    'hour-meter': 'OFFICIAL::10_allpole/390_sensors_instruments/70_meters_measuring_indicators/compteur_horaire_08-04-03_en60617.elmt',
+    'optocoupler': 'OFFICIAL::10_allpole/395_electronics_semiconductors/12_transistors/interface_optocoupleur.elmt',
 }
 
 if __name__ == '__main__':
     fails = []
     for slug, rel in ELEMENTS.items():
-        src = os.path.join(LIB, rel)
+        if rel.startswith('OFFICIAL::'):
+            src = os.path.join(OFFICIAL, rel[len('OFFICIAL::'):])
+        else:
+            src = os.path.join(LIB, rel)
         dst = os.path.join(OUT, f'qet-{slug}.svg')
         try:
             convert(src, dst)

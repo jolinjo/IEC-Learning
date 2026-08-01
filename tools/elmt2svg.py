@@ -16,7 +16,7 @@ MARGIN = 6         # viewBox 外框留白(elmt 單位)
 def stroke_width(style):
     # 對應 QET 原生線寬:thin 細線、normal 1px、hight 粗線
     if 'line-weight:thin' in (style or ''):
-        return 0.4
+        return 0.7
     if 'line-weight:hight' in (style or ''):
         return 2.0
     return 1.0

@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="-21.0 -26.0 27.0 52.0" width="57">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-28.0 -26.0 34.0 52.0" width="72">
   <style>
     g.sym { stroke:#3f3f3f; fill:none; stroke-linecap:round; stroke-linejoin:round }
     g.sym text { stroke:none; fill:#3f3f3f }
@@ -8,10 +8,11 @@
     }
   </style>
   <g class="sym">
+    <path d="M -21.64 0.20 A 6.00 3.50 0 0 0 -10.36 0.20" stroke-width="1.0"/>
+    <path d="M -10.36 -0.20 A 6.00 3.50 0 0 0 -21.64 -0.20" stroke-width="1.0"/>
     <polyline points="-5.0,-10.0 0.0,10.0 0.0,20.0" stroke-width="1.0"/>
-    <line x1="-14.8" y1="1.5" x2="-3.0" y2="1.5" stroke-width="0.7"/>
-    <line x1="-14.8" y1="-1.5" x2="-3.0" y2="-1.5" stroke-width="0.7"/>
-    <path d="M -10.00 -5.00 A 5.00 5.00 0 0 0 -10.00 5.00" stroke-width="0.7"/>
     <line x1="0.0" y1="-20.0" x2="0.0" y2="-10.0" stroke-width="1.0"/>
+    <line x1="-16.0" y1="-6.0" x2="-16.0" y2="-3.0" stroke-width="1.0"/>
+    <line x1="-10.0" y1="0.0" x2="-3.0" y2="0.0" stroke-width="0.7" stroke-dasharray="6 4"/>
   </g>
 </svg>
