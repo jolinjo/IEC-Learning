@@ -6,6 +6,7 @@ import { TOPIC_NAMES } from '@/data/questions'
 import {
   LAYERS,
   MASTER_COUNT,
+  RADAR_AXES,
   currentUser,
   exportProfile,
   getProfile,
@@ -16,6 +17,7 @@ import {
   setCurrentUser,
   type Profile,
 } from '@/lib/quizStore'
+import RadarChart from '@/components/RadarChart'
 
 const BOOK_NAMES: Record<string, string> = {
   all: '總檢定',
@@ -139,26 +141,29 @@ export default function HistoryPage() {
         </div>
       ) : (
         <>
-          {/* 總體等級 */}
+          {/* 總體等級 + 五邊形能力雷達 */}
           <div className="mt-6 rounded-xl border border-neutral-200 p-5 dark:border-neutral-800">
-            <div className="flex items-center justify-between">
+            <div className="grid items-center gap-4 sm:grid-cols-2">
               <div>
                 <div className="text-sm text-neutral-500">{profile.name} 的總體程度</div>
                 <div className="mt-1 text-3xl font-bold"><LevelBadge ratio={overall.ratio} /></div>
+                <div className="mt-3 text-sm text-neutral-500">
+                  已掌握 <span className="font-bold text-green-600">{overall.mastered}</span> / {overall.total} 題
+                  <span className="ml-2 text-xs">(答對過未滿 {MASTER_COUNT} 次:{overall.inProgress} 題)</span>
+                </div>
+                <div className="mt-3 flex items-center gap-3">
+                  <MasteryBar {...overall} />
+                  <span className="w-12 text-right text-sm text-neutral-500">{Math.round(overall.ratio * 100)}%</span>
+                </div>
+                <div className="mt-3 text-xs text-neutral-400">
+                  等級門檻:掌握 ⅓ 題庫=入門、⅔=熟練、全部=專家。雷達圖的內外三圈即三個門檻。
+                  <span className="ml-2 inline-block h-2 w-2 rounded-sm bg-green-500 align-middle" /> 已掌握
+                  <span className="ml-2 inline-block h-2 w-2 rounded-sm bg-amber-400 align-middle" /> 進行中
+                </div>
               </div>
-              <div className="text-right text-sm text-neutral-500">
-                已掌握 <span className="font-bold text-green-600">{overall.mastered}</span> / {overall.total} 題
-                <div className="text-xs">(答對過未滿 {MASTER_COUNT} 次:{overall.inProgress} 題)</div>
-              </div>
-            </div>
-            <div className="mt-3 flex items-center gap-3">
-              <MasteryBar {...overall} />
-              <span className="w-12 text-right text-sm text-neutral-500">{Math.round(overall.ratio * 100)}%</span>
-            </div>
-            <div className="mt-2 text-xs text-neutral-400">
-              等級門檻:掌握 ⅓ 題庫=入門、⅔=熟練、全部=專家。
-              <span className="ml-2 inline-block h-2 w-2 rounded-sm bg-green-500 align-middle" /> 已掌握
-              <span className="ml-2 inline-block h-2 w-2 rounded-sm bg-amber-400 align-middle" /> 進行中
+              <RadarChart
+                axes={RADAR_AXES.map((a) => ({ label: a.name, ratio: masteryOf(qstats, a.books).ratio }))}
+              />
             </div>
           </div>
 

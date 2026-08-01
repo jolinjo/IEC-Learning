@@ -100,6 +100,15 @@ export const LAYERS = [
   { key: 'D', name: '應用領域', books: ['D1'] },
 ]
 
+// 五邊形雷達圖的五個能力軸(A 層題多,拆成命名與標示配線兩軸)
+export const RADAR_AXES = [
+  { key: '命名', name: '物件命名', books: ['A1', 'A2'] },
+  { key: '配線', name: '標示配線', books: ['A3', 'A4'] },
+  { key: '文件', name: '文件管理', books: ['B1'] },
+  { key: '圖面', name: '圖面符號', books: ['C1', 'C2', 'C3'] },
+  { key: '安全', name: '安全應用', books: ['D1'] },
+]
+
 export interface Mastery {
   mastered: number
   inProgress: number // 答對過但未滿 3 次
