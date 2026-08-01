@@ -10,7 +10,9 @@
     }
   </style>
   <g class="sym" stroke-width="1.8">
-    <path d="M 18 16 L 12 16 L 12 44 L 18 44"/>
-    <line x1="12" y1="30" x2="46" y2="30"/>
+    <line x1="14" y1="20" x2="34" y2="32"/>
+    <path class="solid" d="M 34 32 L 26 30 L 29 25 Z"/>
+    <line x1="14" y1="32" x2="34" y2="44"/>
+    <path class="solid" d="M 34 44 L 26 42 L 29 37 Z"/>
   </g>
 </svg>
