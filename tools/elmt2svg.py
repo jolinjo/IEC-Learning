@@ -6,18 +6,27 @@
 - terminal 畫成小空心圓(端子)、略過 dynamic_text
 - 顏色預設 #8a8a8a(深淺色主題皆可讀)
 """
-import sys, math
+import re, sys, math
 import xml.etree.ElementTree as ET
 
 SCALE = 3          # elmt 座標 → SVG 放大倍率
 MARGIN = 6         # viewBox 外框留白(elmt 單位)
 
 def stroke_width(style):
+    # 對應 QET 原生線寬:thin 細線、normal 1px、hight 粗線
     if 'line-weight:thin' in (style or ''):
-        return 1.0
+        return 0.4
     if 'line-weight:hight' in (style or ''):
-        return 4.0
-    return 2.0
+        return 2.0
+    return 1.0
+
+
+def stroke_color(style):
+    """取出元件自帶顏色;黑色回傳 None(交給主題自適應樣式)。"""
+    m = re.search(r'color:([^;"]+)', style or '')
+    if not m or m.group(1) in ('black', '#000000', '#000'):
+        return None
+    return m.group(1)
 
 def dash(style):
     if 'line-style:dashed' in (style or ''):
@@ -26,7 +35,7 @@ def dash(style):
         return '2 3'
     return None
 
-def convert(src, dst, color='#8a8a8a'):
+def convert(src, dst):
     root = ET.parse(src).getroot()
     desc = root.find('description')
     shapes, xs, ys = [], [], []
@@ -39,6 +48,9 @@ def convert(src, dst, color='#8a8a8a'):
         tag = el.tag
         st = el.get('style', '')
         attrs = {'stroke-width': stroke_width(st)}
+        c = stroke_color(st)
+        if c:
+            attrs['color'] = c
         d = dash(st)
         if d:
             attrs['stroke-dasharray'] = d
@@ -99,8 +111,11 @@ def convert(src, dst, color='#8a8a8a'):
             except (IndexError, ValueError):
                 size = 9.0
             rot = float(el.get('rotation', 0) or 0)
-            shapes.append(('text', {'x': x, 'y': y, 'text': content,
-                                    'size': size, 'rotation': rot}))
+            tshape = {'x': x, 'y': y, 'text': content, 'size': size, 'rotation': rot}
+            tc = el.get('color')
+            if tc and tc not in ('black', '#000000', '#000'):
+                tshape['color'] = tc
+            shapes.append(('text', tshape))
             track((x, y - size), (x + size * 0.7 * max(len(content), 1), y))
         # terminal/dynamic_text/input 略過:
         # 端子在正式圖面上不顯示(畫出來會被誤讀成連接點),動態文字為代號欄位
@@ -113,11 +128,22 @@ def convert(src, dst, color='#8a8a8a'):
     out = [f'<svg xmlns="http://www.w3.org/2000/svg" '
            f'viewBox="{x0:.1f} {y0:.1f} {vw:.1f} {vh:.1f}" '
            f'width="{vw * SCALE:.0f}">',
-           f'  <g stroke="{color}" fill="none" stroke-linecap="round" '
-           f'stroke-linejoin="round">']
+           # 深淺主題自適應:淺色底用深灰、深色底用亮灰;元件自帶色以 inline style 保留
+           '  <style>',
+           '    g.sym { stroke:#3f3f3f; fill:none; stroke-linecap:round; stroke-linejoin:round }',
+           '    g.sym text { stroke:none; fill:#3f3f3f }',
+           '    @media (prefers-color-scheme: dark) {',
+           '      g.sym { stroke:#c9c9c9 }',
+           '      g.sym text { fill:#c9c9c9 }',
+           '    }',
+           '  </style>',
+           '  <g class="sym">']
     for kind, a in shapes:
         sw = a.pop('stroke-width', 1)
         extra = f' stroke-dasharray="{a.pop("stroke-dasharray")}"' if 'stroke-dasharray' in a else ''
+        col = a.pop('color', None)
+        if col:
+            extra += f' style="{"fill" if kind == "text" else "stroke"}:{col}"'
         if kind == 'line':
             out.append(f'    <line x1="{a["x1"]}" y1="{a["y1"]}" x2="{a["x2"]}" y2="{a["y2"]}" stroke-width="{sw}"{extra}/>')
         elif kind == 'polyline':
@@ -136,11 +162,11 @@ def convert(src, dst, color='#8a8a8a'):
             rot = f' transform="rotate({a["rotation"]} {bx} {by})"' if a['rotation'] else ''
             esc = (a['text'].replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;'))
             out.append(f'    <text x="{bx}" y="{by:.1f}" font-size="{size * 1.1:.1f}" '
-                       f'font-family="sans-serif" fill="{color}" stroke="none"{rot}>{esc}</text>')
+                       f'font-family="sans-serif"{rot}{extra}>{esc}</text>')
     out += ['  </g>', '</svg>', '']
     with open(dst, 'w', encoding='utf-8') as f:
         f.write('\n'.join(out))
     print(f'{src} -> {dst}')
 
 if __name__ == '__main__':
-    convert(sys.argv[1], sys.argv[2], *(sys.argv[3:4]))
+    convert(sys.argv[1], sys.argv[2])

@@ -1,20 +1,28 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="-16.0 -28.5 72.0 59.5" width="216">
-  <g stroke="#8a8a8a" fill="none" stroke-linecap="round" stroke-linejoin="round">
-    <text x="35.0" y="-6.6" font-size="6.6" font-family="sans-serif" fill="#8a8a8a" stroke="none">PE</text>
-    <text x="-2.0" y="-6.6" font-size="6.6" font-family="sans-serif" fill="#8a8a8a" stroke="none">4</text>
-    <text x="18.0" y="-6.6" font-size="6.6" font-family="sans-serif" fill="#8a8a8a" stroke="none">3</text>
-    <ellipse cx="20.0" cy="-20.0" rx="2.5" ry="2.5" stroke-width="2.0"/>
-    <ellipse cx="40.0" cy="-20.0" rx="2.5" ry="2.5" stroke-width="2.0"/>
-    <rect x="6.0" y="8.0" width="10.0" height="10.0" stroke-width="1.0"/>
-    <text x="8.0" y="18.4" font-size="6.6" font-family="sans-serif" fill="#8a8a8a" stroke="none">P</text>
-    <ellipse cx="0.0" cy="-20.0" rx="2.5" ry="2.5" stroke-width="2.0"/>
-    <line x1="30.0" y1="4.0" x2="30.0" y2="16.0" stroke-width="1.0"/>
-    <polyline points="30.0,10.0 40.0,10.0 40.0,-6.0" stroke-width="1.0"/>
-    <polyline points="0.0,-6.0 0.0,0.0 3.0,0.0" stroke-width="1.0"/>
-    <polyline points="20.0,-6.0 20.0,0.0 18.0,0.0 4.0,4.0" stroke-width="1.0"/>
-    <line x1="11.0" y1="8.0" x2="11.0" y2="2.0" stroke-width="1.0" stroke-dasharray="6 4"/>
-    <polyline points="-3.0,-20.0 -10.0,-20.0 -10.0,25.0 50.0,25.0 50.0,-20.0 43.0,-20.0" stroke-width="2.0"/>
-    <line x1="3.0" y1="-20.0" x2="17.0" y2="-20.0" stroke-width="2.0"/>
-    <line x1="23.0" y1="-20.0" x2="37.0" y2="-20.0" stroke-width="2.0"/>
+  <style>
+    g.sym { stroke:#3f3f3f; fill:none; stroke-linecap:round; stroke-linejoin:round }
+    g.sym text { stroke:none; fill:#3f3f3f }
+    @media (prefers-color-scheme: dark) {
+      g.sym { stroke:#c9c9c9 }
+      g.sym text { fill:#c9c9c9 }
+    }
+  </style>
+  <g class="sym">
+    <text x="35.0" y="-6.6" font-size="6.6" font-family="sans-serif">PE</text>
+    <text x="-2.0" y="-6.6" font-size="6.6" font-family="sans-serif">4</text>
+    <text x="18.0" y="-6.6" font-size="6.6" font-family="sans-serif">3</text>
+    <ellipse cx="20.0" cy="-20.0" rx="2.5" ry="2.5" stroke-width="1.0"/>
+    <ellipse cx="40.0" cy="-20.0" rx="2.5" ry="2.5" stroke-width="1.0"/>
+    <rect x="6.0" y="8.0" width="10.0" height="10.0" stroke-width="0.4"/>
+    <text x="8.0" y="18.4" font-size="6.6" font-family="sans-serif">P</text>
+    <ellipse cx="0.0" cy="-20.0" rx="2.5" ry="2.5" stroke-width="1.0"/>
+    <line x1="30.0" y1="4.0" x2="30.0" y2="16.0" stroke-width="0.4"/>
+    <polyline points="30.0,10.0 40.0,10.0 40.0,-6.0" stroke-width="0.4"/>
+    <polyline points="0.0,-6.0 0.0,0.0 3.0,0.0" stroke-width="0.4"/>
+    <polyline points="20.0,-6.0 20.0,0.0 18.0,0.0 4.0,4.0" stroke-width="0.4"/>
+    <line x1="11.0" y1="8.0" x2="11.0" y2="2.0" stroke-width="0.4" stroke-dasharray="6 4"/>
+    <polyline points="-3.0,-20.0 -10.0,-20.0 -10.0,25.0 50.0,25.0 50.0,-20.0 43.0,-20.0" stroke-width="1.0"/>
+    <line x1="3.0" y1="-20.0" x2="17.0" y2="-20.0" stroke-width="1.0"/>
+    <line x1="23.0" y1="-20.0" x2="37.0" y2="-20.0" stroke-width="1.0"/>
   </g>
 </svg>

@@ -1,9 +1,17 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="-38.0 -46.0 44.0 72.0" width="132">
-  <g stroke="#8a8a8a" fill="none" stroke-linecap="round" stroke-linejoin="round">
-    <line x1="-32.0" y1="-10.0" x2="-2.0" y2="-10.0" stroke-width="2.0" stroke-dasharray="6 4"/>
-    <line x1="0.0" y1="-20.0" x2="0.0" y2="-40.0" stroke-width="2.0"/>
-    <line x1="-32.0" y1="-15.0" x2="-32.0" y2="-5.0" stroke-width="2.0"/>
-    <line x1="0.0" y1="0.0" x2="0.0" y2="20.0" stroke-width="2.0"/>
-    <line x1="0.0" y1="0.0" x2="-8.0" y2="-23.0" stroke-width="2.0"/>
+  <style>
+    g.sym { stroke:#3f3f3f; fill:none; stroke-linecap:round; stroke-linejoin:round }
+    g.sym text { stroke:none; fill:#3f3f3f }
+    @media (prefers-color-scheme: dark) {
+      g.sym { stroke:#c9c9c9 }
+      g.sym text { fill:#c9c9c9 }
+    }
+  </style>
+  <g class="sym">
+    <line x1="-32.0" y1="-10.0" x2="-2.0" y2="-10.0" stroke-width="1.0" stroke-dasharray="6 4"/>
+    <line x1="0.0" y1="-20.0" x2="0.0" y2="-40.0" stroke-width="1.0"/>
+    <line x1="-32.0" y1="-15.0" x2="-32.0" y2="-5.0" stroke-width="1.0"/>
+    <line x1="0.0" y1="0.0" x2="0.0" y2="20.0" stroke-width="1.0"/>
+    <line x1="0.0" y1="0.0" x2="-8.0" y2="-23.0" stroke-width="1.0"/>
   </g>
 </svg>
