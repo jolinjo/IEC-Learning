@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-46.0 -28.2 92.0 56.5" width="179">
+  <style>
+    g.sym { stroke:#3f3f3f; fill:none; stroke-linecap:round; stroke-linejoin:round }
+    g.sym text { stroke:none; fill:#3f3f3f }
+    @media (prefers-color-scheme: dark) {
+      g.sym { stroke:#c9c9c9 }
+      g.sym text { fill:#c9c9c9 }
+    }
+  </style>
+  <g class="sym">
+    <rect x="-40.0" y="-20.0" width="80.0" height="40.0" stroke-width="1.0"/>
+    <text x="-26.0" y="2.0" font-size="8.0" font-family="sans-serif">LINE FILTER</text>
+    <ellipse cx="-30.005000000000003" cy="-20.005" rx="2.235" ry="2.235" stroke-width="1.0"/>
+    <ellipse cx="-30.005000000000003" cy="19.995" rx="2.235" ry="2.235" stroke-width="1.0"/>
+    <ellipse cx="29.995" cy="19.995" rx="2.235" ry="2.235" stroke-width="1.0"/>
+    <ellipse cx="29.995" cy="-20.005" rx="2.235" ry="2.235" stroke-width="1.0"/>
+    <ellipse cx="9.995" cy="19.995" rx="2.235" ry="2.235" stroke-width="1.0"/>
+    <ellipse cx="9.995" cy="-20.005" rx="2.235" ry="2.235" stroke-width="1.0"/>
+    <ellipse cx="-10.005" cy="19.995" rx="2.235" ry="2.235" stroke-width="1.0"/>
+    <ellipse cx="-10.005" cy="-20.005" rx="2.235" ry="2.235" stroke-width="1.0"/>
+  </g>
+</svg>
