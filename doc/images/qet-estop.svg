@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-17.1 -27.7 29.0 52.0" width="87">
+  <g stroke="#8a8a8a" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <polyline points="-6.5,6.33 -7.5,8.33 -4.5,8.33 -5.5,6.33" stroke-width="1.0"/>
+    <line x1="-3.0" y1="5.33" x2="-5.0" y2="5.33" stroke-width="1.0" stroke-dasharray="6 4"/>
+    <ellipse cx="-6.0" cy="5.33" rx="1.0" ry="1.0" stroke-width="1.0"/>
+    <line x1="-3.0" y1="-1.67" x2="-3.0" y2="5.33" stroke-width="1.0" stroke-dasharray="6 4"/>
+    <polyline points="4.88,-11.67 -0.13,8.33 -0.13,18.33" stroke-width="2.0"/>
+    <line x1="-4.13" y1="-3.67" x2="-1.13" y2="-1.67" stroke-width="1.0"/>
+    <path d="M -6.99 -6.67 A 4.00 5.00 0 1 0 -6.99 3.33" stroke-width="1.0"/>
+    <line x1="-4.13" y1="-3.67" x2="-4.13" y2="-1.67" stroke-width="1.0"/>
+    <line x1="-0.13" y1="-10.67" x2="5.88" y2="-10.67" stroke-width="2.0"/>
+    <line x1="-0.13" y1="-21.67" x2="-0.13" y2="-10.67" stroke-width="2.0"/>
+    <line x1="-7.0" y1="-6.67" x2="-7.0" y2="3.33" stroke-width="1.0"/>
+    <line x1="-7.0" y1="-1.67" x2="3.0" y2="-1.67" stroke-width="1.0" stroke-dasharray="6 4"/>
+  </g>
+</svg>

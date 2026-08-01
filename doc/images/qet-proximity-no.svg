@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-42.0 -26.0 48.0 52.0" width="144">
+  <g stroke="#8a8a8a" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <line x1="-6.0" y1="0.0" x2="-3.0" y2="0.0" stroke-width="2.0"/>
+    <line x1="-11.0" y1="0.0" x2="-8.0" y2="0.0" stroke-width="2.0"/>
+    <line x1="-16.0" y1="0.0" x2="-14.0" y2="0.0" stroke-width="2.0"/>
+    <polyline points="-26.0,-10.0 -36.0,0.0 -26.0,10.0 -16.0,0.0 -26.0,-10.0 -28.0,-8.0 -28.0,7.0 -28.0,8.0 -26.0,10.0 -24.0,8.0 -24.0,-8.0" stroke-width="2.0"/>
+    <polyline points="-5.0,-10.0 0.0,10.0 0.0,20.0" stroke-width="2.0"/>
+    <line x1="0.0" y1="-20.0" x2="0.0" y2="-10.0" stroke-width="2.0"/>
+  </g>
+</svg>

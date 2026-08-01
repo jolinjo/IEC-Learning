@@ -87,8 +87,23 @@ def convert(src, dst, color='#8a8a8a'):
                                         f'A {rx:.2f} {ry:.2f} 0 {large} {sweep} '
                                         f'{p2[0]:.2f} {p2[1]:.2f}', **attrs}))
             track((x, y), (x + w, y + h))
-        # terminal/text/dynamic_text/input 略過:
-        # 端子在正式圖面上不顯示(畫出來會被誤讀成連接點),元件內文字教材圖不需要
+        elif tag == 'text':
+            # 靜態文字是符號的一部分(馬達的 M、電表的 V/A、端子標字)
+            x, y = float(el.get('x')), float(el.get('y'))
+            content = el.get('text', '')
+            if not content.strip() or content.startswith('Form'):
+                continue  # 略過空字與多形式元件的「Form 1 / Forme 1」標註
+            font = el.get('font', '')
+            try:
+                size = float(font.split(',')[1])
+            except (IndexError, ValueError):
+                size = 9.0
+            rot = float(el.get('rotation', 0) or 0)
+            shapes.append(('text', {'x': x, 'y': y, 'text': content,
+                                    'size': size, 'rotation': rot}))
+            track((x, y - size), (x + size * 0.7 * max(len(content), 1), y))
+        # terminal/dynamic_text/input 略過:
+        # 端子在正式圖面上不顯示(畫出來會被誤讀成連接點),動態文字為代號欄位
 
     if not xs:
         sys.exit(f'{src}: 無可轉換圖元')
@@ -101,7 +116,7 @@ def convert(src, dst, color='#8a8a8a'):
            f'  <g stroke="{color}" fill="none" stroke-linecap="round" '
            f'stroke-linejoin="round">']
     for kind, a in shapes:
-        sw = a.pop('stroke-width')
+        sw = a.pop('stroke-width', 1)
         extra = f' stroke-dasharray="{a.pop("stroke-dasharray")}"' if 'stroke-dasharray' in a else ''
         if kind == 'line':
             out.append(f'    <line x1="{a["x1"]}" y1="{a["y1"]}" x2="{a["x2"]}" y2="{a["y2"]}" stroke-width="{sw}"{extra}/>')
@@ -115,6 +130,13 @@ def convert(src, dst, color='#8a8a8a'):
             out.append(f'    <ellipse cx="{a["cx"]}" cy="{a["cy"]}" rx="{a["rx"]}" ry="{a["ry"]}" stroke-width="{sw}"{extra}/>')
         elif kind == 'path':
             out.append(f'    <path d="{a["d"]}" stroke-width="{sw}"{extra}/>')
+        elif kind == 'text':
+            # QET 文字 y 近似基線上方 0.4 字級處(依馬達 M 置中實測校準)
+            bx, by, size = a['x'], a['y'] + a['size'] * 0.4, a['size']
+            rot = f' transform="rotate({a["rotation"]} {bx} {by})"' if a['rotation'] else ''
+            esc = (a['text'].replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;'))
+            out.append(f'    <text x="{bx}" y="{by:.1f}" font-size="{size * 1.1:.1f}" '
+                       f'font-family="sans-serif" fill="{color}" stroke="none"{rot}>{esc}</text>')
     out += ['  </g>', '</svg>', '']
     with open(dst, 'w', encoding='utf-8') as f:
         f.write('\n'.join(out))
