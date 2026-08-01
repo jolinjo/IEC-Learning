@@ -50,12 +50,19 @@ function stripPreamble(mdText: string): string {
 
 function applyHighlights(mdText: string): string {
   // ==重點== → <mark>:教材重點黃底,也是檢定出題的依據
-  return mdText.replace(/==([^=\n][^=\n]*?)==/g, '<mark>$1</mark>')
+  // 內文允許出現單一等號(如「符號 = 圖形 + 節點」),非貪婪比對到下一個 ==
+  return mdText.replace(/==([^\n]+?)==/g, '<mark>$1</mark>')
+}
+
+function applyStrong(mdText: string): string {
+  // 中文全形標點緊貼 ** 時(如「**重點:**內文」)CommonMark 判定不能閉合,
+  // 粗體會原樣露出——自行預轉 <strong> 繞過邊界規則
+  return mdText.replace(/\*\*([^*\n]+?)\*\*/g, '<strong>$1</strong>')
 }
 
 export function renderHandbook(meta: HandbookMeta): { html: string; toc: TocItem[] } {
   const raw = fs.readFileSync(path.join(process.cwd(), 'md', meta.file), 'utf-8')
-  const body = applyHighlights(stripPreamble(raw))
+  const body = applyStrong(applyHighlights(stripPreamble(raw)))
   const toc: TocItem[] = []
   let hIndex = 0
 
