@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-21.0 -26.0 42.0 52.0" width="89">
+  <style>
+    g.sym { stroke:#3f3f3f; fill:none; stroke-linecap:round; stroke-linejoin:round }
+    g.sym text { stroke:none; fill:#3f3f3f }
+    @media (prefers-color-scheme: dark) {
+      g.sym { stroke:#c9c9c9 }
+      g.sym text { fill:#c9c9c9 }
+    }
+  </style>
+  <g class="sym">
+    <rect x="-15.0" y="-10.0" width="30.0" height="20.0" stroke-width="1.0"/>
+    <polyline points="0.0,-20.0 0.0,-5.0 -8.0,-5.0 -8.0,4.0 0.0,4.0 0.0,20.0" stroke-width="1.0"/>
+  </g>
+</svg>

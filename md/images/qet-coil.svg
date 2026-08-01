@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-20.0 -26.0 40.0 52.0" width="85">
+  <style>
+    g.sym { stroke:#3f3f3f; fill:none; stroke-linecap:round; stroke-linejoin:round }
+    g.sym text { stroke:none; fill:#3f3f3f }
+    @media (prefers-color-scheme: dark) {
+      g.sym { stroke:#c9c9c9 }
+      g.sym text { fill:#c9c9c9 }
+    }
+  </style>
+  <g class="sym">
+    <rect x="-14.0" y="-8.0" width="28.0" height="16.0" stroke-width="1.0"/>
+    <line x1="0.0" y1="-20.0" x2="0.0" y2="-8.0" stroke-width="1.0"/>
+    <line x1="0.0" y1="8.0" x2="0.0" y2="20.0" stroke-width="1.0"/>
+  </g>
+</svg>

@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-42.0 -26.0 48.0 52.0" width="102">
+  <style>
+    g.sym { stroke:#3f3f3f; fill:none; stroke-linecap:round; stroke-linejoin:round }
+    g.sym text { stroke:none; fill:#3f3f3f }
+    @media (prefers-color-scheme: dark) {
+      g.sym { stroke:#c9c9c9 }
+      g.sym text { fill:#c9c9c9 }
+    }
+  </style>
+  <g class="sym">
+    <line x1="-6.0" y1="0.0" x2="-3.0" y2="0.0" stroke-width="1.0"/>
+    <line x1="-11.0" y1="0.0" x2="-8.0" y2="0.0" stroke-width="1.0"/>
+    <line x1="-16.0" y1="0.0" x2="-14.0" y2="0.0" stroke-width="1.0"/>
+    <polyline points="-26.0,-10.0 -36.0,0.0 -26.0,10.0 -16.0,0.0 -26.0,-10.0 -28.0,-8.0 -28.0,7.0 -28.0,8.0 -26.0,10.0 -24.0,8.0 -24.0,-8.0" stroke-width="1.0"/>
+    <polyline points="-5.0,-10.0 0.0,10.0 0.0,20.0" stroke-width="1.0"/>
+    <line x1="0.0" y1="-20.0" x2="0.0" y2="-10.0" stroke-width="1.0"/>
+  </g>
+</svg>

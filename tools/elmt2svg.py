@@ -10,6 +10,7 @@ import re, sys, math
 import xml.etree.ElementTree as ET
 
 SCALE = 3          # elmt 座標 → SVG 放大倍率
+MAX_H = 110        # 顯示高度上限(px):讓大小元件在表格中視覺一致
 MARGIN = 6         # viewBox 外框留白(elmt 單位)
 
 def stroke_width(style):
@@ -125,9 +126,10 @@ def convert(src, dst):
     x0, y0 = min(xs) - MARGIN, min(ys) - MARGIN
     vw, vh = max(xs) - min(xs) + 2 * MARGIN, max(ys) - min(ys) + 2 * MARGIN
 
+    scale = min(SCALE, MAX_H / vh)
     out = [f'<svg xmlns="http://www.w3.org/2000/svg" '
            f'viewBox="{x0:.1f} {y0:.1f} {vw:.1f} {vh:.1f}" '
-           f'width="{vw * SCALE:.0f}">',
+           f'width="{vw * scale:.0f}">',
            # 深淺主題自適應:淺色底用深灰、深色底用亮灰;元件自帶色以 inline style 保留
            '  <style>',
            '    g.sym { stroke:#3f3f3f; fill:none; stroke-linecap:round; stroke-linejoin:round }',
@@ -157,11 +159,11 @@ def convert(src, dst):
         elif kind == 'path':
             out.append(f'    <path d="{a["d"]}" stroke-width="{sw}"{extra}/>')
         elif kind == 'text':
-            # QET 文字 y 近似基線上方 0.4 字級處(依馬達 M 置中實測校準)
-            bx, by, size = a['x'], a['y'] + a['size'] * 0.4, a['size']
+            # QET 文字 y 即基線;字級為 pt,轉 px 需 ×4/3(以單相/三相馬達 M 置中驗證)
+            bx, by, size = a['x'], a['y'], a['size']
             rot = f' transform="rotate({a["rotation"]} {bx} {by})"' if a['rotation'] else ''
             esc = (a['text'].replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;'))
-            out.append(f'    <text x="{bx}" y="{by:.1f}" font-size="{size * 1.1:.1f}" '
+            out.append(f'    <text x="{bx}" y="{by:.1f}" font-size="{size * 4 / 3:.1f}" '
                        f'font-family="sans-serif"{rot}{extra}>{esc}</text>')
     out += ['  </g>', '</svg>', '']
     with open(dst, 'w', encoding='utf-8') as f:

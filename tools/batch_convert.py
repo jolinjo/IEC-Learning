@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
-"""批次將 QET-Lib 元件轉為 doc/images/qet-*.svg(60617 手冊速查表用)。"""
+"""批次將 QET-Lib 元件轉為 md/images/qet-*.svg(60617 手冊速查表用)。"""
 import os, sys
 sys.path.insert(0, os.path.dirname(__file__))
 from elmt2svg import convert
 
 LIB = os.path.expanduser('~/Documents/claudeCodeDev/QET-Lib/elements-company/schematic_multiline')
-OUT = os.path.join(os.path.dirname(__file__), '..', 'doc', 'images')
+OUT = os.path.join(os.path.dirname(__file__), '..', 'md', 'images')
 
 # slug -> QET-Lib 相對路徑
 ELEMENTS = {

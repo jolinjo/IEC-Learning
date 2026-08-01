@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-26.0 -36.0 58.6 59.0" width="109">
+  <style>
+    g.sym { stroke:#3f3f3f; fill:none; stroke-linecap:round; stroke-linejoin:round }
+    g.sym text { stroke:none; fill:#3f3f3f }
+    @media (prefers-color-scheme: dark) {
+      g.sym { stroke:#c9c9c9 }
+      g.sym text { fill:#c9c9c9 }
+    }
+  </style>
+  <g class="sym">
+    <ellipse cx="0.0" cy="0.0" rx="15.0" ry="15.0" stroke-width="1.0"/>
+    <path d="M 9.50 14.36 A 16.00 16.00 0 0 0 16.54 -4.97" stroke-width="1.0"/>
+    <text x="21.0" y="-24.0" font-size="5.3" font-family="sans-serif">W1</text>
+    <text x="2.0" y="-24.0" font-size="5.3" font-family="sans-serif">V1</text>
+    <text x="-6.0" y="0.0" font-size="14.7" font-family="sans-serif">M</text>
+    <line x1="0.0" y1="-30.0" x2="0.0" y2="-15.0" stroke-width="1.0"/>
+    <polyline points="-20.0,-30.0 -20.0,-20.0 -11.0,-11.0" stroke-width="1.0"/>
+    <polyline points="20.0,-30.0 20.0,-20.0 11.0,-11.0" stroke-width="1.0"/>
+    <text x="-19.0" y="-24.0" font-size="5.3" font-family="sans-serif">U1</text>
+    <line x1="17.0" y1="13.0" x2="25.0" y2="13.0" stroke-width="1.0"/>
+    <line x1="18.0" y1="15.0" x2="24.0" y2="15.0" stroke-width="1.0"/>
+    <line x1="19.61" y1="17.0" x2="22.42" y2="17.0" stroke-width="1.0"/>
+    <polyline points="18.0,4.0 21.0,6.0 21.0,13.0" stroke-width="1.0"/>
+    <text x="-8.0" y="10.0" font-size="12.0" font-family="sans-serif">3</text>
+    <path d="M 4.00 6.00 A 2.00 2.00 0 0 0 8.00 6.00" stroke-width="1.0"/>
+    <path d="M 4.00 6.00 A 2.00 2.00 0 0 0 0.00 6.00" stroke-width="1.0"/>
+  </g>
+</svg>
