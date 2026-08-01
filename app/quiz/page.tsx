@@ -10,8 +10,10 @@ export default function QuizIndex() {
     <div className="mx-auto max-w-3xl">
       <h1 className="text-2xl font-bold">線上檢定</h1>
       <p className="mt-2 text-sm text-neutral-600 dark:text-neutral-400">
-        每次隨機 20 題:答錯立即顯示正解與解析;系統會記住你各主題的答題狀況,
-        弱點主題出題機率自動提高。成績只保存在你的瀏覽器本機。
+        每次隨機 20 題,答錯立即顯示正解與解析。每題累積答對 3 次才算「掌握」,
+        沒掌握的題目會優先出現;掌握進度以規範地圖 A–D 四層計算等級
+        (掌握 ⅓ 題庫=入門、⅔=熟練、全部=專家)。首次作答會請你填姓名,
+        成績存在瀏覽器本機,可在成績頁下載/上傳、多人各自紀錄。
       </p>
 
       <Link
