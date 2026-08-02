@@ -14,7 +14,7 @@ import {
 } from '@/lib/quizStore'
 
 const QUIZ_SIZE = 20
-const QUIZ_SIZE_ALL = 60 // 總檢定一場 60 題
+const QUIZ_SIZE_ALL = 100 // 總檢定一場 100 題
 const IMG_PREFIX = process.env.NODE_ENV === 'production' ? '/IEC-Learning/images/' : '/images/'
 
 /** 依「未掌握優先」加權抽題:沒答對過 > 答對未滿3次 > 已掌握;答錯紀錄再加重 */
