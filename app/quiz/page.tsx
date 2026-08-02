@@ -22,7 +22,7 @@ export default function QuizIndex() {
       >
         <div className="text-lg font-bold">🏆 總檢定(全範圍)</div>
         <div className="mt-1 text-sm text-neutral-600 dark:text-neutral-300">
-          橫跨九冊、共 {QUESTIONS.length} 題題庫中抽 100 題,檢驗整體實力
+          橫跨十三冊、共 {QUESTIONS.length} 題題庫中抽 100 題,檢驗整體實力
         </div>
       </Link>
 

@@ -97,7 +97,7 @@ export const LAYERS = [
   { key: 'A', name: '物件命名', books: ['A1', 'A2', 'A3', 'A4'] },
   { key: 'B', name: '文件分類', books: ['B1'] },
   { key: 'C', name: '圖面表達', books: ['C1', 'C2', 'C3'] },
-  { key: 'D', name: '應用領域', books: ['D1'] },
+  { key: 'D', name: '應用領域', books: ['D1', 'D2', 'D3', 'D4', 'D5'] },
 ]
 
 // 全站五軸(成績彙整 CSV 用)
@@ -106,10 +106,10 @@ export const RADAR_AXES = [
   { key: '配線', name: '標示配線', books: ['A3', 'A4'] },
   { key: '文件', name: '文件管理', books: ['B1'] },
   { key: '圖面', name: '圖面符號', books: ['C1', 'C2', 'C3'] },
-  { key: '安全', name: '安全應用', books: ['D1'] },
+  { key: '安全', name: '安全應用', books: ['D1', 'D2', 'D3', 'D4', 'D5'] },
 ]
 
-// 三階段各自的五邊形能力軸(以主題群組劃分,對應學習路徑)
+// 各學習階段的五邊形能力軸(以主題群組劃分,對應學習路徑)
 export const STAGE_RADARS = [
   {
     stage: 1, name: '看懂符號與代號', short: '元件辨識', books: ['C2', 'A1', 'A2'],
@@ -132,13 +132,23 @@ export const STAGE_RADARS = [
     ],
   },
   {
-    stage: 3, name: '畫出正規的圖', short: '圖面繪製', books: ['A3', 'A4', 'D1', 'C3'],
+    stage: 3, name: '畫出正規的圖', short: '圖面繪製', books: ['A3', 'A4', 'C3', 'D2'],
     axes: [
       { label: '導線識別', topics: ['colors', 'codes'] },
       { label: '端子標示', topics: ['terminals', 'terminal-id'] },
       { label: '線號電纜', topics: ['signal', 'cable', 'wiring-no'] },
-      { label: '機械安全', topics: ['supply', 'estop', 'colors-d', 'docs-d'] },
       { label: '符號設計', topics: ['sym-grid', 'sym-nodes', 'sym-design', 'sym-lib'] },
+      { label: '盤體驗證', topics: ['panel'] },
+    ],
+  },
+  {
+    stage: 4, name: '安全風險設計', short: '安全設計', books: ['D3', 'D1', 'D4', 'D5'],
+    axes: [
+      { label: '風險評估', topics: ['risk'] },
+      { label: '防護裝置', topics: ['guards'] },
+      { label: '電氣安全', topics: ['supply', 'colors-d', 'docs-d'] },
+      { label: '安全迴路', topics: ['estop', 'func-safety'] },
+      { label: '急停設計', topics: ['estop-design'] },
     ],
   },
 ]

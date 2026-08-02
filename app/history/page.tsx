@@ -25,6 +25,10 @@ const BOOK_NAMES: Record<string, string> = {
   A2: 'A2 · 81346-2 選碼',
   A3: 'A3 · 60445 端子導線',
   A4: 'A4 · 線號合輯',
+  D2: 'D2 · 61439 盤體',
+  D3: 'D3 · 12100 風險評估',
+  D4: 'D4 · 13849 功能安全',
+  D5: 'D5 · 13850 急停設計',
   B1: 'B1 · 61355 文件',
   C1: 'C1 · 61082-1 圖面',
   C2: 'C2 · 60617 符號',
@@ -141,7 +145,7 @@ export default function HistoryPage() {
         </div>
       ) : (
         <>
-          {/* 總體等級 + 三階段三角雷達 */}
+          {/* 總體等級 + 四階段總覽雷達 */}
           <div className="mt-6 rounded-xl border border-neutral-200 p-5 dark:border-neutral-800">
             <div className="grid items-center gap-4 sm:grid-cols-2">
             <div>
@@ -167,8 +171,8 @@ export default function HistoryPage() {
             </div>
           </div>
 
-          {/* 三階段能力雷達 */}
-          <h2 className="mt-8 font-bold">三階段能力雷達(內外三圈=入門/熟練/專家)</h2>
+          {/* 各階段能力雷達 */}
+          <h2 className="mt-8 font-bold">各階段能力雷達(內外三圈=入門/熟練/專家)</h2>
           <div className="mt-3 space-y-4">
             {STAGE_RADARS.map((sr) => {
               const sm = masteryOf(qstats, sr.books)

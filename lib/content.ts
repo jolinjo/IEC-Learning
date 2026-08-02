@@ -11,13 +11,13 @@ export interface HandbookMeta {
   title: string
   layer: 'A' | 'B' | 'C' | 'D' | '地圖'
   layerName: string
-  stage: 1 | 2 | 3
+  stage: 1 | 2 | 3 | 4
   stageOrder: number
   blurb: string
   noQuiz?: boolean // true = 不列入線上檢定(如 61439 產品驗證知識)
 }
 
-// 學習路徑:入門(認符號讀代號)→ 進階(讀懂整套圖)→ 精通(畫出正規圖)
+// 學習路徑:入門(認符號讀代號)→ 進階(讀懂整套圖)→ 精通(畫出正規圖)→ 安全(安全風險設計)
 export const HANDBOOKS: HandbookMeta[] = [
   { slug: 'C2', file: 'C2_IEC_60617_符號速查手冊.md', std: 'IEC 60617', title: '符號速查', layer: 'C', layerName: '圖面表達', stage: 1, stageOrder: 1, blurb: '認得圖上每個符號——看圖的第一塊磚' },
   { slug: 'A1', file: 'A1_IEC_81346-1_設計與識圖手冊.md', std: 'IEC 81346-1', title: '參考代號與結構化', layer: 'A', layerName: '物件命名', stage: 1, stageOrder: 2, blurb: '=、+、- 代號怎麼組、怎麼讀' },
@@ -26,12 +26,12 @@ export const HANDBOOKS: HandbookMeta[] = [
   { slug: 'B1', file: 'B1_IEC_61355_文件編碼與查閱手冊.md', std: 'IEC 61355', title: '文件分類與編碼', layer: 'B', layerName: '文件分類', stage: 2, stageOrder: 2, blurb: '圖號裡的 DCC 代碼與文件查閱' },
   { slug: 'A3', file: 'A3_IEC_60445_端子與導線識別手冊.md', std: 'IEC 60445', title: '端子與導線識別', layer: 'A', layerName: '物件命名', stage: 3, stageOrder: 1, blurb: '線色鐵律、端子標示——圖與實物對得起來' },
   { slug: 'A4', file: 'A4_IEC_61175_61666_62491_線號端子與電纜標示手冊.md', std: 'IEC 61175/61666/62491', title: '線號與標示合輯', layer: 'A', layerName: '物件命名', stage: 3, stageOrder: 2, blurb: '線號、端子排、電纜標籤的完整系統' },
-  { slug: 'D1', file: 'D1_IEC_60204-1_設計與識圖手冊.md', std: 'IEC 60204-1', title: '機械電氣安全', layer: 'D', layerName: '應用領域', stage: 3, stageOrder: 3, blurb: '急停、線色、驗證測試——出圖的安全底線' },
-  { slug: 'C3', file: 'C3_IEC_81714-2_符號設計手冊.md', std: 'IEC 81714-2', title: '符號設計與元件庫', layer: 'C', layerName: '圖面表達', stage: 3, stageOrder: 4, blurb: '自建符號的網格、節點與庫管理——維護元件庫必讀' },
-  { slug: 'D2', file: 'D2_IEC_61439_盤體設計與驗證手冊.md', std: 'IEC 61439', title: '盤體設計與驗證', layer: 'D', layerName: '應用領域', stage: 3, stageOrder: 5, blurb: '盤體作為產品:額定值、溫升短路驗證與交機文件(不列入檢定)', noQuiz: true },
-  { slug: 'D3', file: 'D3_ISO_12100_機械安全風險評估手冊.md', std: 'ISO 12100', title: '機械安全風險評估', layer: 'D', layerName: '應用領域', stage: 3, stageOrder: 6, blurb: '風險評估與降低三步法——所有安全設計的上位框架(不列入檢定)', noQuiz: true },
-  { slug: 'D4', file: 'D4_ISO_13849-1_IEC_62061_控制系統功能安全手冊.md', std: 'ISO 13849-1/IEC 62061', title: '控制系統功能安全', layer: 'D', layerName: '應用領域', stage: 3, stageOrder: 7, blurb: 'PL/SIL、Category 與安全繼電器——安全迴路的可靠度成績單(不列入檢定)', noQuiz: true },
-  { slug: 'D5', file: 'D5_ISO_13850_急停設計手冊.md', std: 'ISO 13850', title: '急停設計原則', layer: 'D', layerName: '應用領域', stage: 3, stageOrder: 8, blurb: '急停的功能、人因與佈置——按下去要發生什麼(不列入檢定)', noQuiz: true },
+  { slug: 'D1', file: 'D1_IEC_60204-1_設計與識圖手冊.md', std: 'IEC 60204-1', title: '機械電氣安全', layer: 'D', layerName: '應用領域', stage: 4, stageOrder: 2, blurb: '急停、線色、安全裝置、驗證測試——電氣安全的基本功' },
+  { slug: 'C3', file: 'C3_IEC_81714-2_符號設計手冊.md', std: 'IEC 81714-2', title: '符號設計與元件庫', layer: 'C', layerName: '圖面表達', stage: 3, stageOrder: 3, blurb: '自建符號的網格、節點與庫管理——維護元件庫必讀' },
+  { slug: 'D2', file: 'D2_IEC_61439_盤體設計與驗證手冊.md', std: 'IEC 61439', title: '盤體設計與驗證', layer: 'D', layerName: '應用領域', stage: 3, stageOrder: 4, blurb: '盤體作為產品:額定值、溫升短路驗證與交機文件' },
+  { slug: 'D3', file: 'D3_ISO_12100_機械安全風險評估手冊.md', std: 'ISO 12100', title: '機械安全風險評估', layer: 'D', layerName: '應用領域', stage: 4, stageOrder: 1, blurb: '風險評估與降低三步法——所有安全設計的上位框架' },
+  { slug: 'D4', file: 'D4_ISO_13849-1_IEC_62061_控制系統功能安全手冊.md', std: 'ISO 13849-1/IEC 62061', title: '控制系統功能安全', layer: 'D', layerName: '應用領域', stage: 4, stageOrder: 3, blurb: 'PL/SIL、Category 與安全繼電器——安全迴路的可靠度成績單' },
+  { slug: 'D5', file: 'D5_ISO_13850_急停設計手冊.md', std: 'ISO 13850', title: '急停設計原則', layer: 'D', layerName: '應用領域', stage: 4, stageOrder: 4, blurb: '急停的功能、人因與佈置——按下去要發生什麼' },
 ]
 
 export const MAP_META: HandbookMeta = {
@@ -113,5 +113,6 @@ export function getHandbook(slug: string): HandbookMeta | undefined {
 export const STAGES = [
   { stage: 1 as const, name: '入門|看懂符號與代號', desc: '先認得圖上的「字」:符號是長相、代號是名字。讀完就能看懂單張迴路圖在說什麼。' },
   { stage: 2 as const, name: '進階|讀懂一整套圖', desc: '跨頁追訊號、查文件、讀圖號。拿到整本圖冊知道從哪裡下手、哪類問題查哪份文件。' },
-  { stage: 3 as const, name: '精通|畫出正規的圖', desc: '線色、線號、端子、安全要求——從讀圖者變成出圖者,畫出合規、能驗收的圖。' },
+  { stage: 3 as const, name: '精通|畫出正規的圖', desc: '線色、線號、端子、盤體——從讀圖者變成出圖者,畫出合規、能驗收的圖。' },
+  { stage: 4 as const, name: '安全|安全風險設計', desc: '風險評估、電氣安全、安全迴路、急停——把機器設計得安全,依 D3→D1→D4→D5 順序讀。' },
 ]
