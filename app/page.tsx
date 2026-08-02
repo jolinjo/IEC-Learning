@@ -35,10 +35,10 @@ export default function Home() {
                 <Link
                   key={h.slug}
                   href={`/handbook/${h.slug}/`}
-                  className="group rounded-xl border border-neutral-200 p-4 transition hover:border-sky-500 hover:shadow-sm dark:border-neutral-800"
+                  className="group rounded-xl border border-neutral-200 bg-neutral-50 p-4 shadow-sm transition hover:border-sky-500 hover:bg-sky-50 hover:shadow dark:border-neutral-800 dark:bg-neutral-900 dark:hover:bg-sky-950/40"
                 >
                   <div className="flex items-center justify-between">
-                    <span className="rounded bg-neutral-100 px-2 py-0.5 font-mono text-xs text-neutral-600 dark:bg-neutral-800 dark:text-neutral-300">
+                    <span className="rounded bg-white px-2 py-0.5 font-mono text-xs text-neutral-600 shadow-sm ring-1 ring-neutral-200 dark:bg-neutral-800 dark:text-neutral-300 dark:ring-neutral-700">
                       {h.slug} · {h.layerName}
                     </span>
                     <span className="text-xs text-neutral-400">{h.std}</span>
