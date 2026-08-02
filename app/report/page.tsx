@@ -1,8 +1,8 @@
 'use client'
 
 // 成績彙整(主管用):一次讀入多份同仁下載的成績 JSON,純前端統計,不上傳任何資料
-import { useRef, useState } from 'react'
-import { QUESTIONS } from '@/data/questions'
+import React, { useRef, useState } from 'react'
+import { QUESTIONS, TOPIC_NAMES } from '@/data/questions'
 import { LAYERS, RADAR_AXES, MASTER_COUNT, levelOf, masteryOf, type Profile } from '@/lib/quizStore'
 
 interface Row {
@@ -10,10 +10,32 @@ interface Row {
   fileName: string
 }
 
+const BOOK_NAMES: Record<string, string> = {
+  all: '總檢定',
+  A1: 'A1 · 81346-1 代號',
+  A2: 'A2 · 81346-2 選碼',
+  A3: 'A3 · 60445 端子導線',
+  A4: 'A4 · 線號合輯',
+  B1: 'B1 · 61355 文件',
+  C1: 'C1 · 61082-1 圖面',
+  C2: 'C2 · 60617 符號',
+  C3: 'C3 · 81714-2 符號設計',
+  D1: 'D1 · 60204-1 安全',
+}
+
 export default function ReportPage() {
   const [rows, setRows] = useState<Row[]>([])
   const [errors, setErrors] = useState<string[]>([])
+  const [expanded, setExpanded] = useState<Set<string>>(new Set())
   const fileRef = useRef<HTMLInputElement>(null)
+
+  const toggleExpand = (name: string) => {
+    setExpanded((prev) => {
+      const next = new Set(prev)
+      next.has(name) ? next.delete(name) : next.add(name)
+      return next
+    })
+  }
 
   const addFiles = async (files: FileList) => {
     const next: Row[] = []
@@ -104,8 +126,10 @@ export default function ReportPage() {
                   const o = masteryOf(p.qstats)
                   const lv = levelOf(o.ratio)
                   const last = p.history.length ? new Date(p.history[p.history.length - 1].date) : null
+                  const open = expanded.has(p.name)
                   return (
-                    <tr key={p.name} className="border-b border-neutral-200 dark:border-neutral-800">
+                    <React.Fragment key={p.name}>
+                    <tr className="border-b border-neutral-200 dark:border-neutral-800">
                       <td className="py-2 pr-3 font-medium">{p.name}</td>
                       <td className="py-2 pr-3 tabular-nums">
                         {o.mastered}/{o.total}
@@ -122,9 +146,52 @@ export default function ReportPage() {
                           </td>
                         )
                       })}
-                      <td className="py-2 pr-3 tabular-nums">{p.history.length}</td>
+                      <td className="py-2 pr-3 tabular-nums">
+                        {p.history.length > 0 ? (
+                          <button
+                            onClick={() => toggleExpand(p.name)}
+                            className="rounded px-1.5 py-0.5 text-sky-600 hover:bg-sky-50 dark:text-sky-400 dark:hover:bg-sky-950"
+                            title={open ? '收合場次明細' : '展開場次明細'}
+                          >
+                            {p.history.length} {open ? '▾' : '▸'}
+                          </button>
+                        ) : (
+                          0
+                        )}
+                      </td>
                       <td className="py-2 text-xs text-neutral-500">{last ? last.toLocaleString('zh-TW', { hour12: false }) : '—'}</td>
                     </tr>
+                    {open && (
+                      <tr className="border-b border-neutral-200 dark:border-neutral-800">
+                        <td colSpan={6 + RADAR_AXES.length} className="bg-neutral-50 px-4 py-3 dark:bg-neutral-900">
+                          <table className="w-full text-xs">
+                            <thead>
+                              <tr className="border-b border-neutral-300 text-left text-neutral-500 dark:border-neutral-700">
+                                <th className="py-1.5 pr-4">#</th>
+                                <th className="py-1.5 pr-4">日期</th>
+                                <th className="py-1.5 pr-4">範圍</th>
+                                <th className="py-1.5 pr-4">分數</th>
+                                <th className="py-1.5">本次弱點</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {[...p.history].reverse().map((r, i) => (
+                                <tr key={i} className="border-b border-neutral-200 last:border-0 dark:border-neutral-800">
+                                  <td className="py-1.5 pr-4 text-neutral-400">{p.history.length - i}</td>
+                                  <td className="py-1.5 pr-4 whitespace-nowrap">{new Date(r.date).toLocaleString('zh-TW', { hour12: false })}</td>
+                                  <td className="py-1.5 pr-4">{BOOK_NAMES[r.book] ?? r.book}</td>
+                                  <td className={`py-1.5 pr-4 font-bold tabular-nums ${r.score / r.total >= 0.8 ? 'text-green-600' : r.score / r.total >= 0.6 ? 'text-amber-600' : 'text-red-600'}`}>
+                                    {r.score}/{r.total}
+                                  </td>
+                                  <td className="py-1.5 text-neutral-500">{r.weak.map((t) => TOPIC_NAMES[t] ?? t).join('、') || '—'}</td>
+                                </tr>
+                              ))}
+                            </tbody>
+                          </table>
+                        </td>
+                      </tr>
+                    )}
+                    </React.Fragment>
                   )
                 })}
             </tbody>
