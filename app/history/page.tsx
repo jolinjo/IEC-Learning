@@ -163,7 +163,7 @@ export default function HistoryPage() {
               </div>
             </div>
             <RadarChart
-              axes={STAGE_RADARS.map((sr) => ({ label: `第${sr.stage}階段`, ratio: masteryOf(qstats, sr.books).ratio }))}
+              axes={STAGE_RADARS.map((sr) => ({ label: sr.short, ratio: masteryOf(qstats, sr.books).ratio }))}
             />
             </div>
           </div>

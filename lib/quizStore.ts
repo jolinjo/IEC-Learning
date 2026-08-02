@@ -112,7 +112,7 @@ export const RADAR_AXES = [
 // 三階段各自的五邊形能力軸(以主題群組劃分,對應學習路徑)
 export const STAGE_RADARS = [
   {
-    stage: 1, name: '看懂符號與代號', books: ['C2', 'A1', 'A2'],
+    stage: 1, name: '看懂符號與代號', short: '元件辨識', books: ['C2', 'A1', 'A2'],
     axes: [
       { label: '符號辨識', topics: ['symbol-id', 'symbol-recall'] },
       { label: '符號閱讀', topics: ['symbol-read', 'symbol-use'] },
@@ -122,7 +122,7 @@ export const STAGE_RADARS = [
     ],
   },
   {
-    stage: 2, name: '讀懂一整套圖', books: ['C1', 'B1'],
+    stage: 2, name: '讀懂一整套圖', short: '圖面辨識', books: ['C1', 'B1'],
     axes: [
       { label: '版面線條', topics: ['layout'] },
       { label: '交互參照', topics: ['reference'] },
@@ -132,7 +132,7 @@ export const STAGE_RADARS = [
     ],
   },
   {
-    stage: 3, name: '畫出正規的圖', books: ['A3', 'A4', 'D1', 'C3'],
+    stage: 3, name: '畫出正規的圖', short: '圖面繪製', books: ['A3', 'A4', 'D1', 'C3'],
     axes: [
       { label: '導線識別', topics: ['colors', 'codes'] },
       { label: '端子標示', topics: ['terminals', 'terminal-id'] },
