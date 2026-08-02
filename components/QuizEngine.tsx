@@ -14,11 +14,13 @@ import {
 } from '@/lib/quizStore'
 
 const QUIZ_SIZE = 20
+const QUIZ_SIZE_ALL = 60 // 總檢定一場 60 題
 const IMG_PREFIX = process.env.NODE_ENV === 'production' ? '/IEC-Learning/images/' : '/images/'
 
 /** 依「未掌握優先」加權抽題:沒答對過 > 答對未滿3次 > 已掌握;答錯紀錄再加重 */
 function pickQuestions(book: string, qstats: Record<string, QStat>): Question[] {
   const pool = book === 'all' ? [...QUESTIONS] : QUESTIONS.filter((q) => q.book === book)
+  const size = book === 'all' ? QUIZ_SIZE_ALL : QUIZ_SIZE
   const weight = (q: Question) => {
     const s = qstats[q.id]
     if (!s) return 3 // 沒碰過的題優先
@@ -27,7 +29,7 @@ function pickQuestions(book: string, qstats: Record<string, QStat>): Question[] 
   }
   const picked: Question[] = []
   const candidates = [...pool]
-  while (picked.length < Math.min(QUIZ_SIZE, pool.length) && candidates.length) {
+  while (picked.length < Math.min(size, pool.length) && candidates.length) {
     const total = candidates.reduce((sum, q) => sum + weight(q), 0)
     let r = Math.random() * total
     let idx = 0
