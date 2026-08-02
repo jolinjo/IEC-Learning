@@ -17,7 +17,7 @@ export interface HandbookMeta {
   noQuiz?: boolean // true = 不列入線上檢定(如 61439 產品驗證知識)
 }
 
-// 學習路徑:入門(認符號讀代號)→ 進階(讀懂整套圖)→ 精通(畫出正規圖)→ 安全(安全風險設計)
+// 學習路徑:入門(認符號讀代號)→ 進階(讀懂整套圖)→ 精通(畫出正規圖)→ 專家(安全風險設計)
 export const HANDBOOKS: HandbookMeta[] = [
   { slug: 'C2', file: 'C2_IEC_60617_符號速查手冊.md', std: 'IEC 60617', title: '符號速查', layer: 'C', layerName: '圖面表達', stage: 1, stageOrder: 1, blurb: '認得圖上每個符號——看圖的第一塊磚' },
   { slug: 'A1', file: 'A1_IEC_81346-1_設計與識圖手冊.md', std: 'IEC 81346-1', title: '參考代號與結構化', layer: 'A', layerName: '物件命名', stage: 1, stageOrder: 2, blurb: '=、+、- 代號怎麼組、怎麼讀' },
@@ -114,5 +114,5 @@ export const STAGES = [
   { stage: 1 as const, name: '入門|看懂符號與代號', desc: '先認得圖上的「字」:符號是長相、代號是名字。讀完就能看懂單張迴路圖在說什麼。' },
   { stage: 2 as const, name: '進階|讀懂一整套圖', desc: '跨頁追訊號、查文件、讀圖號。拿到整本圖冊知道從哪裡下手、哪類問題查哪份文件。' },
   { stage: 3 as const, name: '精通|畫出正規的圖', desc: '線色、線號、端子、盤體——從讀圖者變成出圖者,畫出合規、能驗收的圖。' },
-  { stage: 4 as const, name: '安全|安全風險設計', desc: '風險評估、電氣安全、安全迴路、急停——把機器設計得安全,依 D3→D1→D4→D5 順序讀。' },
+  { stage: 4 as const, name: '專家|安全風險設計', desc: '風險評估、電氣安全、安全迴路、急停——把機器設計得安全,依 D3→D1→D4→D5 順序讀。' },
 ]
