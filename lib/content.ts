@@ -29,6 +29,9 @@ export const HANDBOOKS: HandbookMeta[] = [
   { slug: 'D1', file: 'D1_IEC_60204-1_設計與識圖手冊.md', std: 'IEC 60204-1', title: '機械電氣安全', layer: 'D', layerName: '應用領域', stage: 3, stageOrder: 3, blurb: '急停、線色、驗證測試——出圖的安全底線' },
   { slug: 'C3', file: 'C3_IEC_81714-2_符號設計手冊.md', std: 'IEC 81714-2', title: '符號設計與元件庫', layer: 'C', layerName: '圖面表達', stage: 3, stageOrder: 4, blurb: '自建符號的網格、節點與庫管理——維護元件庫必讀' },
   { slug: 'D2', file: 'D2_IEC_61439_盤體設計與驗證手冊.md', std: 'IEC 61439', title: '盤體設計與驗證', layer: 'D', layerName: '應用領域', stage: 3, stageOrder: 5, blurb: '盤體作為產品:額定值、溫升短路驗證與交機文件(不列入檢定)', noQuiz: true },
+  { slug: 'D3', file: 'D3_ISO_12100_機械安全風險評估手冊.md', std: 'ISO 12100', title: '機械安全風險評估', layer: 'D', layerName: '應用領域', stage: 3, stageOrder: 6, blurb: '風險評估與降低三步法——所有安全設計的上位框架(不列入檢定)', noQuiz: true },
+  { slug: 'D4', file: 'D4_ISO_13849-1_IEC_62061_控制系統功能安全手冊.md', std: 'ISO 13849-1/IEC 62061', title: '控制系統功能安全', layer: 'D', layerName: '應用領域', stage: 3, stageOrder: 7, blurb: 'PL/SIL、Category 與安全繼電器——安全迴路的可靠度成績單(不列入檢定)', noQuiz: true },
+  { slug: 'D5', file: 'D5_ISO_13850_急停設計手冊.md', std: 'ISO 13850', title: '急停設計原則', layer: 'D', layerName: '應用領域', stage: 3, stageOrder: 8, blurb: '急停的功能、人因與佈置——按下去要發生什麼(不列入檢定)', noQuiz: true },
 ]
 
 export const MAP_META: HandbookMeta = {
