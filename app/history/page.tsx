@@ -142,8 +142,9 @@ export default function HistoryPage() {
         </div>
       ) : (
         <>
-          {/* 總體等級 + 五邊形能力雷達 */}
+          {/* 總體等級 + 三階段三角雷達 */}
           <div className="mt-6 rounded-xl border border-neutral-200 p-5 dark:border-neutral-800">
+            <div className="grid items-center gap-4 sm:grid-cols-2">
             <div>
               <div className="text-sm text-neutral-500">{profile.name} 的總體程度</div>
               <div className="mt-1 text-3xl font-bold"><LevelBadge ratio={overall.ratio} /></div>
@@ -160,6 +161,10 @@ export default function HistoryPage() {
                 <span className="ml-2 inline-block h-2 w-2 rounded-sm bg-green-500 align-middle" /> 已掌握
                 <span className="ml-2 inline-block h-2 w-2 rounded-sm bg-amber-400 align-middle" /> 進行中
               </div>
+            </div>
+            <RadarChart
+              axes={STAGE_RADARS.map((sr) => ({ label: `第${sr.stage}階段`, ratio: masteryOf(qstats, sr.books).ratio }))}
+            />
             </div>
           </div>
 

@@ -1,6 +1,6 @@
 'use client'
 
-// 五邊形能力雷達圖:三圈刻度對應等級門檻(⅓ 入門、⅔ 熟練、外圈專家)
+// N 邊形能力雷達圖(3 軸=三角形、5 軸=五邊形):三圈刻度對應等級門檻(⅓ 入門、⅔ 熟練、外圈專家)
 export interface RadarAxis {
   label: string
   ratio: number // 0~1(已掌握題數比例)
@@ -10,17 +10,15 @@ const CX = 160
 const CY = 150
 const R = 105
 
-function pt(i: number, r: number): [number, number] {
-  const ang = (-90 + i * 72) * (Math.PI / 180)
-  return [CX + r * Math.cos(ang), CY + r * Math.sin(ang)]
-}
-
-function ring(r: number): string {
-  return Array.from({ length: 5 }, (_, i) => pt(i, r).map((v) => v.toFixed(1)).join(',')).join(' ')
-}
-
 export default function RadarChart({ axes }: { axes: RadarAxis[] }) {
-  const data = Array.from({ length: 5 }, (_, i) =>
+  const n = axes.length
+  const pt = (i: number, r: number): [number, number] => {
+    const ang = (-90 + (i * 360) / n) * (Math.PI / 180)
+    return [CX + r * Math.cos(ang), CY + r * Math.sin(ang)]
+  }
+  const ring = (r: number) =>
+    Array.from({ length: n }, (_, i) => pt(i, r).map((v) => v.toFixed(1)).join(',')).join(' ')
+  const data = Array.from({ length: n }, (_, i) =>
     pt(i, Math.max(axes[i]?.ratio ?? 0, 0.02) * R).map((v) => v.toFixed(1)).join(','),
   ).join(' ')
 
@@ -38,7 +36,7 @@ export default function RadarChart({ axes }: { axes: RadarAxis[] }) {
         />
       ))}
       {/* 軸線 */}
-      {Array.from({ length: 5 }, (_, i) => {
+      {Array.from({ length: n }, (_, i) => {
         const [x, y] = pt(i, R)
         return <line key={i} x1={CX} y1={CY} x2={x} y2={y} className="stroke-neutral-200 dark:stroke-neutral-800" strokeWidth={1} />
       })}
@@ -48,7 +46,7 @@ export default function RadarChart({ axes }: { axes: RadarAxis[] }) {
       <text x={CX + 6} y={CY - R + 10} fontSize="9" className="fill-neutral-400">專家</text>
       {/* 資料多邊形 */}
       <polygon points={data} className="fill-sky-500/25 stroke-sky-500" strokeWidth={2} strokeLinejoin="round" />
-      {Array.from({ length: 5 }, (_, i) => {
+      {Array.from({ length: n }, (_, i) => {
         const [x, y] = pt(i, Math.max(axes[i]?.ratio ?? 0, 0.02) * R)
         return <circle key={i} cx={x} cy={y} r={3.5} className="fill-sky-500" />
       })}
