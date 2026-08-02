@@ -4,7 +4,6 @@ import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { TOPIC_NAMES } from '@/data/questions'
 import {
-  LAYERS,
   MASTER_COUNT,
   STAGE_RADARS,
   currentUser,
@@ -194,52 +193,6 @@ export default function HistoryPage() {
                       />
                     </div>
                   </div>
-                </div>
-              )
-            })}
-          </div>
-
-          {/* A–D 層級儀表 */}
-          <h2 className="mt-8 font-bold">四層架構掌握度(對應規範地圖 A–D)</h2>
-          <div className="mt-3 space-y-4">
-            {LAYERS.map((L) => {
-              const m = masteryOf(qstats, L.books)
-              return (
-                <div key={L.key} className="rounded-xl border border-neutral-200 p-4 dark:border-neutral-800">
-                  <div className="flex items-center justify-between text-sm">
-                    <span className="flex items-center gap-2 font-bold">
-                      <span className="flex h-6 w-6 items-center justify-center rounded-md bg-sky-600 font-mono text-xs text-white">{L.key}</span>
-                      {L.name}
-                    </span>
-                    <span>
-                      <LevelBadge ratio={m.ratio} />
-                      <span className="ml-2 text-neutral-500">{m.mastered}/{m.total} 題</span>
-                    </span>
-                  </div>
-                  <div className="mt-2 flex items-center gap-3">
-                    <MasteryBar {...m} />
-                    <span className="w-12 text-right text-xs text-neutral-500">{Math.round(m.ratio * 100)}%</span>
-                  </div>
-                  {L.books.length > 1 && (
-                    <div className="mt-3 space-y-1.5 border-t border-neutral-100 pt-2 text-xs text-neutral-500 dark:border-neutral-800">
-                      {L.books.map((b) => {
-                        const bm = masteryOf(qstats, [b])
-                        return (
-                          <div key={b} className="flex items-center gap-3">
-                            <span className="w-40 shrink-0 truncate font-mono">{BOOK_NAMES[b]}</span>
-                            <div className="h-1.5 flex-1 overflow-hidden rounded bg-neutral-200 dark:bg-neutral-800">
-                              <div className="flex h-full">
-                                <div className="bg-green-500" style={{ width: `${(bm.mastered / bm.total) * 100}%` }} />
-                                <div className="bg-amber-400" style={{ width: `${(bm.inProgress / bm.total) * 100}%` }} />
-                              </div>
-                            </div>
-                            <span className="w-14 shrink-0 text-right tabular-nums">{bm.mastered}/{bm.total} 題</span>
-                            <span className="w-8 shrink-0 text-right"><LevelBadge ratio={bm.ratio} /></span>
-                          </div>
-                        )
-                      })}
-                    </div>
-                  )}
                 </div>
               )
             })}
