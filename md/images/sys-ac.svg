@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 580 132" width="640">
+  <style>
+    g.sym { stroke:#3f3f3f; fill:none; stroke-linecap:round }
+    text { fill:#3f3f3f; font-family:sans-serif; stroke:none }
+    @media (prefers-color-scheme: dark) { g.sym { stroke:#c9c9c9 } text { fill:#c9c9c9 } }
+  </style>
+  <!-- 單相二線 -->
+  <text x="8" y="16" font-size="11" font-weight="bold">單相二線</text>
+  <g class="sym">
+    <line x1="34" y1="42" x2="130" y2="42" stroke-width="2.2"/>
+    <line x1="34" y1="78" x2="130" y2="78" stroke-width="1.1"/>
+  </g>
+  <text x="8" y="46" font-size="10">L</text>
+  <text x="8" y="82" font-size="10">N</text>
+  <text x="8" y="118" font-size="9">L–N:110 V</text>
+  <!-- 單相三線 -->
+  <text x="156" y="16" font-size="11" font-weight="bold">單相三線</text>
+  <g class="sym">
+    <line x1="186" y1="38" x2="278" y2="38" stroke-width="2.2"/>
+    <line x1="186" y1="62" x2="278" y2="62" stroke-width="1.1"/>
+    <line x1="186" y1="86" x2="278" y2="86" stroke-width="2.2"/>
+  </g>
+  <text x="156" y="42" font-size="10">L1</text>
+  <text x="156" y="66" font-size="10">N</text>
+  <text x="156" y="90" font-size="10">L2</text>
+  <text x="156" y="118" font-size="9">L–N:110 V／L1–L2:220 V</text>
+  <!-- 三相三線 -->
+  <text x="306" y="16" font-size="11" font-weight="bold">三相三線</text>
+  <g class="sym">
+    <line x1="336" y1="38" x2="424" y2="38" stroke-width="2.2"/>
+    <line x1="336" y1="62" x2="424" y2="62" stroke-width="2.2"/>
+    <line x1="336" y1="86" x2="424" y2="86" stroke-width="2.2"/>
+  </g>
+  <text x="306" y="42" font-size="10">L1</text>
+  <text x="306" y="66" font-size="10">L2</text>
+  <text x="306" y="90" font-size="10">L3</text>
+  <text x="306" y="118" font-size="9">相間:220 V,無 N</text>
+  <!-- 三相四線 -->
+  <text x="452" y="16" font-size="11" font-weight="bold">三相四線</text>
+  <g class="sym">
+    <line x1="482" y1="34" x2="572" y2="34" stroke-width="2.2"/>
+    <line x1="482" y1="56" x2="572" y2="56" stroke-width="2.2"/>
+    <line x1="482" y1="78" x2="572" y2="78" stroke-width="2.2"/>
+    <line x1="482" y1="98" x2="572" y2="98" stroke-width="1.1"/>
+  </g>
+  <text x="452" y="38" font-size="10">L1</text>
+  <text x="452" y="60" font-size="10">L2</text>
+  <text x="452" y="82" font-size="10">L3</text>
+  <text x="452" y="102" font-size="10">N</text>
+  <text x="452" y="122" font-size="9">相間 380 V,對 N 220 V</text>
+</svg>
