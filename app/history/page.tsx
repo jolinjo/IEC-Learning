@@ -170,14 +170,18 @@ export default function HistoryPage() {
 
           {/* 三階段能力雷達 */}
           <h2 className="mt-8 font-bold">三階段能力雷達(內外三圈=入門/熟練/專家)</h2>
-          <div className="mt-3 grid gap-4 lg:grid-cols-3">
+          <div className="mt-3 space-y-4">
             {STAGE_RADARS.map((sr) => {
               const sm = masteryOf(qstats, sr.books)
               return (
-                <div key={sr.stage} className="rounded-xl border border-neutral-200 bg-neutral-50 p-4 dark:border-neutral-800 dark:bg-neutral-900">
-                  <div className="flex items-center justify-between text-sm">
-                    <span className="font-bold">第 {sr.stage} 階段 · {sr.name}</span>
-                    <span><LevelBadge ratio={sm.ratio} /><span className="ml-2 text-xs text-neutral-500">{sm.mastered}/{sm.total} 題</span></span>
+                <div key={sr.stage} className="rounded-xl border border-neutral-200 bg-neutral-50 p-5 dark:border-neutral-800 dark:bg-neutral-900">
+                  <div className="flex flex-wrap items-center justify-between gap-2">
+                    <span className="text-base font-bold">第 {sr.stage} 階段 · {sr.name}</span>
+                    <span><LevelBadge ratio={sm.ratio} /><span className="ml-2 text-sm text-neutral-500">{sm.mastered}/{sm.total} 題</span></span>
+                  </div>
+                  <div className="mt-2 flex items-center gap-3">
+                    <MasteryBar {...sm} />
+                    <span className="w-12 text-right text-xs text-neutral-500">{Math.round(sm.ratio * 100)}%</span>
                   </div>
                   <RadarChart
                     axes={sr.axes.map((a) => ({ label: a.label, ratio: masteryOfTopics(qstats, a.topics).ratio }))}
