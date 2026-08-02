@@ -100,7 +100,7 @@ export const LAYERS = [
   { key: 'D', name: '應用領域', books: ['D1'] },
 ]
 
-// 五邊形雷達圖的五個能力軸(A 層題多,拆成命名與標示配線兩軸)
+// 全站五軸(成績彙整 CSV 用)
 export const RADAR_AXES = [
   { key: '命名', name: '物件命名', books: ['A1', 'A2'] },
   { key: '配線', name: '標示配線', books: ['A3', 'A4'] },
@@ -108,6 +108,53 @@ export const RADAR_AXES = [
   { key: '圖面', name: '圖面符號', books: ['C1', 'C2', 'C3'] },
   { key: '安全', name: '安全應用', books: ['D1'] },
 ]
+
+// 三階段各自的五邊形能力軸(以主題群組劃分,對應學習路徑)
+export const STAGE_RADARS = [
+  {
+    stage: 1, name: '看懂符號與代號', books: ['C2', 'A1', 'A2'],
+    axes: [
+      { label: '符號辨識', topics: ['symbol-id', 'symbol-recall'] },
+      { label: '符號閱讀', topics: ['symbol-read', 'symbol-use'] },
+      { label: '接地保護', topics: ['earthing', 'protection'] },
+      { label: '代號結構', topics: ['aspects', 'syntax', 'reading'] },
+      { label: '類別選碼', topics: ['main-class', 'sub-class', 'version'] },
+    ],
+  },
+  {
+    stage: 2, name: '讀懂一整套圖', books: ['C1', 'B1'],
+    axes: [
+      { label: '版面線條', topics: ['layout'] },
+      { label: '交互參照', topics: ['reference'] },
+      { label: '圖面種類', topics: ['doctypes'] },
+      { label: 'DCC 代碼', topics: ['dcc'] },
+      { label: '文件查閱', topics: ['doclist', 'doc-apply'] },
+    ],
+  },
+  {
+    stage: 3, name: '畫出正規的圖', books: ['A3', 'A4', 'D1', 'C3'],
+    axes: [
+      { label: '導線識別', topics: ['colors', 'codes'] },
+      { label: '端子標示', topics: ['terminals', 'terminal-id'] },
+      { label: '線號電纜', topics: ['signal', 'cable', 'wiring-no'] },
+      { label: '機械安全', topics: ['supply', 'estop', 'colors-d', 'docs-d'] },
+      { label: '符號設計', topics: ['sym-grid', 'sym-nodes', 'sym-design', 'sym-lib'] },
+    ],
+  },
+]
+
+export function masteryOfTopics(qstats: Record<string, QStat>, topics: string[]): Mastery {
+  const pool = QUESTIONS.filter((q) => topics.includes(q.topic))
+  let mastered = 0
+  let inProgress = 0
+  for (const q of pool) {
+    const s = qstats[q.id]
+    if (!s) continue
+    if (s.r >= MASTER_COUNT) mastered++
+    else if (s.r > 0) inProgress++
+  }
+  return { mastered, inProgress, total: pool.length, ratio: pool.length ? mastered / pool.length : 0 }
+}
 
 export interface Mastery {
   mastered: number
