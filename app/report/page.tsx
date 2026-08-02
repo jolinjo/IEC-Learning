@@ -168,24 +168,44 @@ export default function ReportPage() {
                             <thead>
                               <tr className="border-b border-neutral-300 text-left text-neutral-500 dark:border-neutral-700">
                                 <th className="py-1.5 pr-4">#</th>
-                                <th className="py-1.5 pr-4">日期</th>
+                                <th className="py-1.5 pr-4">時間</th>
                                 <th className="py-1.5 pr-4">範圍</th>
                                 <th className="py-1.5 pr-4">分數</th>
                                 <th className="py-1.5">本次弱點</th>
                               </tr>
                             </thead>
                             <tbody>
-                              {[...p.history].reverse().map((r, i) => (
-                                <tr key={i} className="border-b border-neutral-200 last:border-0 dark:border-neutral-800">
-                                  <td className="py-1.5 pr-4 text-neutral-400">{p.history.length - i}</td>
-                                  <td className="py-1.5 pr-4 whitespace-nowrap">{new Date(r.date).toLocaleString('zh-TW', { hour12: false })}</td>
-                                  <td className="py-1.5 pr-4">{BOOK_NAMES[r.book] ?? r.book}</td>
-                                  <td className={`py-1.5 pr-4 font-bold tabular-nums ${r.score / r.total >= 0.8 ? 'text-green-600' : r.score / r.total >= 0.6 ? 'text-amber-600' : 'text-red-600'}`}>
-                                    {r.score}/{r.total}
-                                  </td>
-                                  <td className="py-1.5 text-neutral-500">{r.weak.map((t) => TOPIC_NAMES[t] ?? t).join('、') || '—'}</td>
-                                </tr>
-                              ))}
+                              {(() => {
+                                const recs = [...p.history].reverse().map((r, i) => ({ r, no: p.history.length - i }))
+                                const groups: { day: string; items: typeof recs }[] = []
+                                for (const it of recs) {
+                                  const day = new Date(it.r.date).toLocaleDateString('zh-TW')
+                                  const g = groups[groups.length - 1]
+                                  if (g && g.day === day) g.items.push(it)
+                                  else groups.push({ day, items: [it] })
+                                }
+                                return groups.map((g) => (
+                                  <React.Fragment key={g.day}>
+                                    <tr className="border-b border-neutral-300 bg-neutral-100 dark:border-neutral-700 dark:bg-neutral-800">
+                                      <td colSpan={5} className="py-1.5 pr-4 font-bold">
+                                        📅 {g.day}
+                                        <span className="ml-2 font-normal text-neutral-400">{g.items.length} 場</span>
+                                      </td>
+                                    </tr>
+                                    {g.items.map(({ r, no }) => (
+                                      <tr key={no} className="border-b border-neutral-200 last:border-0 dark:border-neutral-800">
+                                        <td className="py-1.5 pr-4 text-neutral-400">{no}</td>
+                                        <td className="py-1.5 pr-4 whitespace-nowrap tabular-nums">{new Date(r.date).toLocaleTimeString('zh-TW', { hour12: false })}</td>
+                                        <td className="py-1.5 pr-4">{BOOK_NAMES[r.book] ?? r.book}</td>
+                                        <td className={`py-1.5 pr-4 font-bold tabular-nums ${r.score / r.total >= 0.8 ? 'text-green-600' : r.score / r.total >= 0.6 ? 'text-amber-600' : 'text-red-600'}`}>
+                                          {r.score}/{r.total}
+                                        </td>
+                                        <td className="py-1.5 text-neutral-500">{r.weak.map((t) => TOPIC_NAMES[t] ?? t).join('、') || '—'}</td>
+                                      </tr>
+                                    ))}
+                                  </React.Fragment>
+                                ))
+                              })()}
                             </tbody>
                           </table>
                         </td>
