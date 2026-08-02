@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { HANDBOOKS, getHandbook, renderHandbook } from '@/lib/content'
+import { QUESTIONS } from '@/data/questions'
 
 export function generateStaticParams() {
   return HANDBOOKS.map((h) => ({ slug: h.slug }))
@@ -16,6 +17,7 @@ export default async function HandbookPage({ params }: { params: Promise<{ slug:
   const idx = HANDBOOKS.findIndex((h) => h.slug === meta.slug)
   const ordered = [...HANDBOOKS].sort((a, b) => a.stage - b.stage || a.stageOrder - b.stageOrder)
   const pos = ordered.findIndex((h) => h.slug === meta.slug)
+  const quizCount = Math.min(20, QUESTIONS.filter((q) => q.book === meta.slug).length)
   const prev = pos > 0 ? ordered[pos - 1] : null
   const next = pos < ordered.length - 1 ? ordered[pos + 1] : null
 
@@ -61,7 +63,7 @@ export default async function HandbookPage({ params }: { params: Promise<{ slug:
           <div className="mt-12 rounded-xl border border-sky-200 bg-sky-50 p-5 text-center dark:border-sky-900 dark:bg-sky-950">
             <div className="font-bold">讀完了嗎?馬上檢定加深印象</div>
             <Link href={`/quiz/${meta.slug}/`} className="mt-3 inline-block rounded-lg bg-sky-600 px-6 py-2 font-medium text-white hover:bg-sky-500">
-              開始本章檢定(20 題)
+              開始本章檢定({quizCount} 題)
             </Link>
           </div>
         )}
