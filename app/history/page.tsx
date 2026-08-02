@@ -174,19 +174,25 @@ export default function HistoryPage() {
             {STAGE_RADARS.map((sr) => {
               const sm = masteryOf(qstats, sr.books)
               return (
-                <div key={sr.stage} className="rounded-xl border border-neutral-200 bg-neutral-50 p-4 dark:border-neutral-800 dark:bg-neutral-900">
-                  <div className="flex flex-wrap items-center gap-3">
-                    <span className="font-bold">第 {sr.stage} 階段 · {sr.name}</span>
-                    <LevelBadge ratio={sm.ratio} />
-                    <span className="text-xs text-neutral-500">{sm.mastered}/{sm.total} 題 · {Math.round(sm.ratio * 100)}%</span>
-                    <div className="w-40">
-                      <MasteryBar {...sm} />
+                <div key={sr.stage} className="rounded-xl border border-neutral-200 bg-neutral-50 p-5 dark:border-neutral-800 dark:bg-neutral-900">
+                  <div className="grid items-center gap-4 sm:grid-cols-2">
+                    <div>
+                      <div className="text-sm text-neutral-500">第 {sr.stage} 階段 · {sr.name}</div>
+                      <div className="mt-1 text-3xl font-bold"><LevelBadge ratio={sm.ratio} /></div>
+                      <div className="mt-3 text-sm text-neutral-500">
+                        已掌握 <span className="font-bold text-green-600">{sm.mastered}</span> / {sm.total} 題
+                        <span className="ml-2 text-xs">(進行中:{sm.inProgress} 題)</span>
+                      </div>
+                      <div className="mt-3 flex items-center gap-3">
+                        <MasteryBar {...sm} />
+                        <span className="w-12 text-right text-sm text-neutral-500">{Math.round(sm.ratio * 100)}%</span>
+                      </div>
                     </div>
-                  </div>
-                  <div className="mx-auto w-56 sm:w-64">
-                    <RadarChart
-                      axes={sr.axes.map((a) => ({ label: a.label, ratio: masteryOfTopics(qstats, a.topics).ratio }))}
-                    />
+                    <div className="mx-auto w-64">
+                      <RadarChart
+                        axes={sr.axes.map((a) => ({ label: a.label, ratio: masteryOfTopics(qstats, a.topics).ratio }))}
+                      />
+                    </div>
                   </div>
                 </div>
               )
