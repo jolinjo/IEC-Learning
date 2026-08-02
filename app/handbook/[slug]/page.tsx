@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { HANDBOOKS, getHandbook, renderHandbook } from '@/lib/content'
 import { QUESTIONS } from '@/data/questions'
+import TocNav from '@/components/TocNav'
 
 export function generateStaticParams() {
   return HANDBOOKS.map((h) => ({ slug: h.slug }))
@@ -30,17 +31,7 @@ export default async function HandbookPage({ params }: { params: Promise<{ slug:
           <div className="mt-1 font-bold">{meta.std}</div>
           <div className="text-neutral-600 dark:text-neutral-400">{meta.title}</div>
           <hr className="my-3 border-neutral-200 dark:border-neutral-800" />
-          <nav className="space-y-1">
-            {toc.map((t) => (
-              <a
-                key={t.id}
-                href={`#${t.id}`}
-                className={`block truncate hover:text-sky-600 ${t.depth === 1 ? 'font-medium' : 'pl-4 text-neutral-500 dark:text-neutral-400'}`}
-              >
-                {t.text}
-              </a>
-            ))}
-          </nav>
+          <TocNav toc={toc} />
           <hr className="my-3 border-neutral-200 dark:border-neutral-800" />
           {meta.noQuiz ? (
             <p className="text-xs text-neutral-500">本冊為產品驗證知識,不列入線上檢定。</p>

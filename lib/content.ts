@@ -71,7 +71,12 @@ export function renderHandbook(meta: HandbookMeta): { html: string; toc: TocItem
   const renderer = new Renderer()
   renderer.heading = (text: string, depth: number) => {
     const id = `h-${hIndex++}`
-    if (depth <= 2) toc.push({ id, text: text.replace(/<[^>]+>/g, ''), depth })
+    if (depth <= 2) {
+      const plain = text.replace(/<[^>]+>/g, '')
+        .replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>')
+        .replace(/&quot;/g, '"').replace(/&#39;/g, "'")
+      toc.push({ id, text: plain, depth })
+    }
     return `<h${depth} id="${id}">${text}</h${depth}>`
   }
   renderer.image = (href: string, _title: string | null, alt: string) => {
