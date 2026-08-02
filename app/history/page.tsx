@@ -174,18 +174,20 @@ export default function HistoryPage() {
             {STAGE_RADARS.map((sr) => {
               const sm = masteryOf(qstats, sr.books)
               return (
-                <div key={sr.stage} className="rounded-xl border border-neutral-200 bg-neutral-50 p-5 dark:border-neutral-800 dark:bg-neutral-900">
-                  <div className="flex flex-wrap items-center justify-between gap-2">
-                    <span className="text-base font-bold">第 {sr.stage} 階段 · {sr.name}</span>
-                    <span><LevelBadge ratio={sm.ratio} /><span className="ml-2 text-sm text-neutral-500">{sm.mastered}/{sm.total} 題</span></span>
+                <div key={sr.stage} className="rounded-xl border border-neutral-200 bg-neutral-50 p-4 dark:border-neutral-800 dark:bg-neutral-900">
+                  <div className="flex flex-wrap items-center gap-3">
+                    <span className="font-bold">第 {sr.stage} 階段 · {sr.name}</span>
+                    <LevelBadge ratio={sm.ratio} />
+                    <span className="text-xs text-neutral-500">{sm.mastered}/{sm.total} 題 · {Math.round(sm.ratio * 100)}%</span>
+                    <div className="w-40">
+                      <MasteryBar {...sm} />
+                    </div>
                   </div>
-                  <div className="mt-2 flex items-center gap-3">
-                    <MasteryBar {...sm} />
-                    <span className="w-12 text-right text-xs text-neutral-500">{Math.round(sm.ratio * 100)}%</span>
+                  <div className="mx-auto w-56 sm:w-64">
+                    <RadarChart
+                      axes={sr.axes.map((a) => ({ label: a.label, ratio: masteryOfTopics(qstats, a.topics).ratio }))}
+                    />
                   </div>
-                  <RadarChart
-                    axes={sr.axes.map((a) => ({ label: a.label, ratio: masteryOfTopics(qstats, a.topics).ratio }))}
-                  />
                 </div>
               )
             })}
