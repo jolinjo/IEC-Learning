@@ -3,6 +3,10 @@
 import { useEffect, useMemo, useState } from 'react'
 import Link from 'next/link'
 import { QUESTIONS, TOPIC_NAMES, type Question } from '@/data/questions'
+import { HANDBOOKS, STAGES } from '@/lib/handbooks'
+
+const BOOK_META = new Map(HANDBOOKS.map((h) => [h.slug, h]))
+const STAGE_TAG = new Map(STAGES.map((st) => [st.stage, st.name.split('|')[0]]))
 import {
   MASTER_COUNT,
   currentUser,
@@ -220,7 +224,13 @@ export default function QuizEngine({ book, title }: { book: string; title: strin
       </div>
 
       <h2 className="mt-6 text-lg font-bold leading-relaxed">{q.q}</h2>
-      <div className="mt-1 text-xs text-neutral-400">主題:{TOPIC_NAMES[q.topic] ?? q.topic}</div>
+      <div className="mt-1 text-xs text-neutral-400">
+        主題:{TOPIC_NAMES[q.topic] ?? q.topic}
+        {(() => {
+          const h = BOOK_META.get(q.book)
+          return h ? ` ｜ ${h.slug} ${h.title} ｜ 第 ${h.stage} 階段(${STAGE_TAG.get(h.stage)})` : ''
+        })()}
+      </div>
 
       {q.img && (
         <div className="mt-4 flex justify-center rounded-xl border border-neutral-200 bg-neutral-50 p-6 dark:border-neutral-800 dark:bg-neutral-900">
