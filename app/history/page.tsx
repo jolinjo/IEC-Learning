@@ -71,25 +71,21 @@ export default function HistoryPage() {
     setLoaded(true)
   }, [])
 
-  const download = () => {
-    const json = exportProfile()
-    if (!json || !profile) return
-    const blob = new Blob([json], { type: 'application/json' })
+  const download = async () => {
+    const sealed = await exportProfile()
+    if (!sealed || !profile) return
+    const blob = new Blob([sealed], { type: 'application/octet-stream' })
     const a = document.createElement('a')
     a.href = URL.createObjectURL(blob)
-    a.download = `IEC-Learning_成績_${profile.name}.json`
+    a.download = `IEC-Learning_成績_${profile.name}.iecq`
     a.click()
     URL.revokeObjectURL(a.href)
   }
 
-  const upload = (file: File) => {
-    const reader = new FileReader()
-    reader.onload = () => {
-      const res = importProfile(String(reader.result))
-      setMsg(res.msg)
-      reload()
-    }
-    reader.readAsText(file)
+  const upload = async (file: File) => {
+    const res = await importProfile(await file.text())
+    setMsg(res.msg)
+    reload()
   }
 
   const switchUser = (name: string) => {
@@ -113,7 +109,7 @@ export default function HistoryPage() {
         <div>
           <h1 className="text-2xl font-bold">掌握度與成績</h1>
           <p className="mt-1 text-xs text-neutral-500">
-            每題在不同場次累積答對 {MASTER_COUNT} 次=掌握該題。紀錄僅存於此瀏覽器,可下載備份或帶到別台電腦上傳。
+            每題在不同場次累積答對 {MASTER_COUNT} 次=掌握該題。紀錄僅存於此瀏覽器,可下載備份或帶到別台電腦上傳(檔案含防竄改簽章,改過的檔匯入會被拒收)。
           </p>
         </div>
         <div className="flex items-center gap-2 text-sm">
@@ -134,7 +130,7 @@ export default function HistoryPage() {
           <button onClick={() => fileRef.current?.click()} className="rounded-lg border border-neutral-300 px-3 py-1.5 hover:bg-neutral-100 dark:border-neutral-700 dark:hover:bg-neutral-800">
             ⬆ 上傳成績
           </button>
-          <input ref={fileRef} type="file" accept=".json" hidden onChange={(e) => e.target.files?.[0] && upload(e.target.files[0])} />
+          <input ref={fileRef} type="file" accept=".iecq" hidden onChange={(e) => e.target.files?.[0] && upload(e.target.files[0])} />
         </div>
       </div>
       {msg && <div className="mt-3 rounded-lg bg-sky-50 px-3 py-2 text-sm text-sky-800 dark:bg-sky-950 dark:text-sky-200">{msg}</div>}

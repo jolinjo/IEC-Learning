@@ -198,27 +198,77 @@ export function levelOf(ratio: number): Level {
   return { label: '新手', color: 'text-neutral-500' }
 }
 
-// ===== 匯出/匯入 =====
+// ===== 匯出/匯入(封裝格式 .iecq:XOR 打亂+SHA-256 簽章,防手動竄改) =====
 
-export function exportProfile(): string | null {
-  const p = getProfile()
-  if (!p) return null
-  return JSON.stringify({ app: 'IEC-Learning', version: 1, profile: p }, null, 2)
+const SEAL_MAGIC = 'IECQ1'
+const SEAL_SALT = 'iecq-seal-v1:d4b7a1c9-竹科黑手電控'
+
+function xorBytes(bytes: Uint8Array): Uint8Array {
+  const key = new TextEncoder().encode(SEAL_SALT)
+  const out = new Uint8Array(bytes.length)
+  for (let i = 0; i < bytes.length; i++) out[i] = bytes[i] ^ key[i % key.length]
+  return out
 }
 
-export function importProfile(json: string): { ok: boolean; msg: string } {
+function toB64(bytes: Uint8Array): string {
+  let bin = ''
+  for (let i = 0; i < bytes.length; i += 0x8000) {
+    bin += String.fromCharCode(...bytes.subarray(i, i + 0x8000))
+  }
+  return btoa(bin)
+}
+
+function fromB64(b64: string): Uint8Array {
+  const bin = atob(b64)
+  const out = new Uint8Array(bin.length)
+  for (let i = 0; i < bin.length; i++) out[i] = bin.charCodeAt(i)
+  return out
+}
+
+async function sha256Hex(text: string): Promise<string> {
+  const digest = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(SEAL_SALT + text))
+  return [...new Uint8Array(digest)].map((b) => b.toString(16).padStart(2, '0')).join('')
+}
+
+export async function exportProfile(): Promise<string | null> {
+  const p = getProfile()
+  if (!p) return null
+  const json = JSON.stringify({ app: 'IEC-Learning', version: 2, profile: p })
+  const body = toB64(xorBytes(new TextEncoder().encode(json)))
+  const sig = await sha256Hex(json)
+  return `${SEAL_MAGIC}.${body}.${sig}`
+}
+
+// 解封成績檔:驗證簽章,任何竄改都會被拒收;失敗丟出錯誤訊息
+export async function decodeProfileFile(text: string): Promise<Profile> {
+  const t = text.trim()
+  if (!t.startsWith(SEAL_MAGIC + '.')) throw new Error('不是有效的成績檔(請用新版下載的 .iecq 檔)')
+  const parts = t.split('.')
+  if (parts.length !== 3) throw new Error('成績檔結構不完整')
+  let json: string
   try {
-    const data = JSON.parse(json)
-    const p: Profile = data.profile ?? data // 容忍直接匯入 profile 本體
-    if (!p?.name || typeof p.qstats !== 'object' || !Array.isArray(p.history)) {
-      return { ok: false, msg: '檔案格式不正確' }
-    }
+    json = new TextDecoder().decode(xorBytes(fromB64(parts[1])))
+  } catch {
+    throw new Error('成績檔內容無法解讀')
+  }
+  if ((await sha256Hex(json)) !== parts[2]) throw new Error('簽章不符——檔案已被修改或損壞')
+  const data = JSON.parse(json)
+  const p: Profile = data.profile
+  if (!p?.name || typeof p.qstats !== 'object' || !Array.isArray(p.history)) {
+    throw new Error('成績檔欄位不完整')
+  }
+  return p
+}
+
+export async function importProfile(text: string): Promise<{ ok: boolean; msg: string }> {
+  try {
+    const p = await decodeProfileFile(text)
     const all = loadProfiles()
     all[p.name] = p
     saveProfiles(all)
     localStorage.setItem(CURRENT_KEY, p.name)
     return { ok: true, msg: `已匯入「${p.name}」的成績並切換為目前使用者` }
-  } catch {
-    return { ok: false, msg: '無法解析檔案(不是有效的 JSON)' }
+  } catch (e) {
+    return { ok: false, msg: e instanceof Error ? e.message : '無法解析檔案' }
   }
 }

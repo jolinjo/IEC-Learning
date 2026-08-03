@@ -3,7 +3,7 @@
 // 成績彙整(主管用):一次讀入多份同仁下載的成績 JSON,純前端統計,不上傳任何資料
 import React, { useRef, useState } from 'react'
 import { QUESTIONS, TOPIC_NAMES } from '@/data/questions'
-import { LAYERS, RADAR_AXES, MASTER_COUNT, levelOf, masteryOf, type Profile } from '@/lib/quizStore'
+import { LAYERS, RADAR_AXES, MASTER_COUNT, decodeProfileFile, levelOf, masteryOf, type Profile } from '@/lib/quizStore'
 
 interface Row {
   profile: Profile
@@ -46,10 +46,7 @@ export default function ReportPage() {
     const errs: string[] = []
     for (const f of Array.from(files)) {
       try {
-        const data = JSON.parse(await f.text())
-        const p: Profile = data.profile ?? data
-        if (!p?.name || typeof p.qstats !== 'object') throw new Error()
-        next.push({ profile: p, fileName: f.name })
+        next.push({ profile: await decodeProfileFile(await f.text()), fileName: f.name })
       } catch {
         errs.push(f.name)
       }
@@ -86,7 +83,7 @@ export default function ReportPage() {
     <div className="mx-auto max-w-5xl">
       <h1 className="text-2xl font-bold">成績彙整(主管用)</h1>
       <p className="mt-2 text-sm text-neutral-600 dark:text-neutral-400">
-        請同仁在「成績紀錄」頁下載各自的成績檔(JSON),收齊後在這裡一次選入,
+        請同仁在「成績紀錄」頁下載各自的成績檔(.iecq),收齊後在這裡一次選入,
         立即得到全員掌握度總表——所有計算都在你的瀏覽器完成,不會上傳到任何伺服器。
         每題累積答對 {MASTER_COUNT} 次=掌握;等級門檻:⅓ 入門、⅔ 熟練、全部專家。
       </p>
@@ -100,11 +97,11 @@ export default function ReportPage() {
             ⬇ 匯出 CSV(Excel)
           </button>
         )}
-        <input ref={fileRef} type="file" accept=".json" multiple hidden onChange={(e) => e.target.files && addFiles(e.target.files)} />
+        <input ref={fileRef} type="file" accept=".iecq" multiple hidden onChange={(e) => e.target.files && addFiles(e.target.files)} />
       </div>
       {errors.length > 0 && (
         <div className="mt-3 rounded-lg bg-red-50 px-3 py-2 text-sm text-red-700 dark:bg-red-950 dark:text-red-300">
-          無法解析:{errors.join('、')}(不是有效的成績檔)
+          無法解析:{errors.join('、')}(不是有效的成績檔,或內容已被修改)
         </div>
       )}
 
