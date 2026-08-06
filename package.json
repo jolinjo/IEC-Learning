@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "prebuild": "mkdir -p public && rm -rf public/images && cp -R md/images public/images",
+    "prebuild": "mkdir -p public && rm -rf public/images public/sections && cp -R md/images public/images && node tools/gen-sections.mjs",
     "predev": "mkdir -p public && rm -rf public/images && cp -R md/images public/images"
   },
   "dependencies": {

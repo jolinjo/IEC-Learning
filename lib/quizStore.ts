@@ -20,6 +20,7 @@ export interface Profile {
   name: string
   qstats: Record<string, QStat> // 以題目 id 為鍵
   history: HistoryRec[]
+  review?: string[] // 「完全沒印象」標記的題:下次檢定優先出
 }
 
 const PROFILES_KEY = 'iecq_profiles'
@@ -77,6 +78,19 @@ export function updateProfile(fn: (p: Profile) => void) {
   fn(p)
   all[name] = p
   saveProfiles(all)
+}
+
+// 「完全沒印象」:本題不計分,列入下次檢定優先出題
+export function flagReview(qid: string) {
+  updateProfile((p) => {
+    p.review = [...new Set([...(p.review ?? []), qid])]
+  })
+}
+
+export function unflagReview(qid: string) {
+  updateProfile((p) => {
+    if (p.review) p.review = p.review.filter((x) => x !== qid)
+  })
 }
 
 export function recordAnswer(qid: string, correct: boolean) {

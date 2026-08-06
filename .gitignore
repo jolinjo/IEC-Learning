@@ -6,3 +6,4 @@ out/
 __pycache__/
 .next/
 public/images/
+public/sections/
